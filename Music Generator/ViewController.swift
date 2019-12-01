@@ -7,15 +7,18 @@
 //
 
 import Cocoa
-import AudioToolbox
+
 
 class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
 
+    private var musicBox: MusicBox!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        musicBox = MusicBox()
+        musicBox.delegate = self
     }
 
     override var representedObject: Any? {
@@ -25,50 +28,19 @@ class ViewController: NSViewController {
     }
     
     @IBAction func playTwelveNote(sender: Any) {
-        playRandomMusic(with: Scale.twelveTone)
+        textField.stringValue = ""
+        musicBox.playRandomMusic(with: Scale.twelveTone)
     }
     
     @IBAction func playMajor(sender: Any) {
-        playRandomMusic(with: Scale.major)
-    }
-
-    func playRandomMusic(with scale: Scale) {
         textField.stringValue = ""
-        
-        var sequence : MusicSequence? = nil
-        NewMusicSequence(&sequence)
+        musicBox.playRandomMusic(with: Scale.major)
+    }
+}
 
-        var track : MusicTrack? = nil
-        var musicTrack = MusicSequenceNewTrack(sequence!, &track)
-
-        // Adding notes
-        var time = MusicTimeStamp(1.0)
-
-        let randomNotes = scale.randomized()
-        
-        for index in 0...randomNotes.count-1 {
-            let noteValue = randomNotes[index]
-            let duration = NoteDuration.random(slowest: .half, fastest: .sixteenth)
-
-            textField.stringValue.append(contentsOf: "\(noteValue.letter), \(duration)\n")
-
-            var note = MIDINoteMessage(channel: 0,
-                                       note: noteValue.value(at: 5),
-                                       velocity: 64,
-                                       releaseVelocity: 0,
-                                       duration: duration.floatValue )
-
-            musicTrack = MusicTrackNewMIDINoteEvent(track!, time, &note)
-            time += duration.value
-        }
-
-        // Creating a player
-
-        var musicPlayer : MusicPlayer? = nil
-        var player = NewMusicPlayer(&musicPlayer)
-
-        player = MusicPlayerSetSequence(musicPlayer!, sequence)
-        player = MusicPlayerStart(musicPlayer!)
+extension ViewController: MusicBoxDelegate {
+    func willAdd(note: Note, duration: NoteDuration) {
+        textField.stringValue.append(contentsOf: "\(note.letter), \(duration)\n")
     }
 }
 
