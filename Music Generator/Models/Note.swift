@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Note {
+struct Note: Hashable {
     let tonalValue: UInt8
     
     func value(at octave: UInt8) -> UInt8 {

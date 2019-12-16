@@ -13,12 +13,14 @@ class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
 
     private var musicBox: MusicBox!
+    private var composition: Composition!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         musicBox = MusicBox()
-        musicBox.delegate = self
+        composition = Composition()
+        composition.delegate = self
     }
 
     override var representedObject: Any? {
@@ -29,16 +31,21 @@ class ViewController: NSViewController {
     
     @IBAction func playTwelveNote(sender: Any) {
         textField.stringValue = ""
-        musicBox.playRandomMusic(with: Scale.twelveTone)
     }
     
     @IBAction func playMajor(sender: Any) {
         textField.stringValue = ""
-        musicBox.playRandomMusic(with: Scale.major)
+        composition.reset()
+        composition.compose(with: Scale.major)
+        musicBox.play(composition: composition)
+    }
+    
+    @IBAction func stop(sender: Any) {
+        musicBox.stop()
     }
 }
 
-extension ViewController: MusicBoxDelegate {
+extension ViewController: CompositionDelegate {
     func willAdd(note: Note, duration: NoteDuration) {
         textField.stringValue.append(contentsOf: "\(note.letter), \(duration)\n")
     }

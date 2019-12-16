@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -746,14 +746,32 @@
                                     <action selector="playMajorWithSender:" target="5gI-5U-AMq" id="xTh-xI-7wC"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m03-Za-Es1">
+                                <rect key="frame" x="83" y="42" width="105" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="93" id="F38-YH-Dvk"/>
+                                    <constraint firstAttribute="height" constant="21" id="UwB-P1-0O2"/>
+                                    <constraint firstAttribute="width" constant="93" id="awE-aG-eGk"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="cVo-R2-3TE"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b4I-qa-W9a">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="stopWithSender:" target="5gI-5U-AMq" id="4kQ-yn-eMZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="YiM-Fl-hJa" firstAttribute="leading" secondItem="m03-Za-Es1" secondAttribute="trailing" constant="12" id="20l-WJ-ZUE"/>
                             <constraint firstItem="npY-Jt-CK9" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" id="9tX-6j-XNR"/>
                             <constraint firstAttribute="trailing" secondItem="SDZ-Nv-N3T" secondAttribute="trailing" constant="20" id="Gck-no-zS6"/>
                             <constraint firstItem="YiM-Fl-hJa" firstAttribute="centerX" secondItem="ERx-hH-rdd" secondAttribute="centerX" id="cP7-uP-OOv"/>
                             <constraint firstItem="SDZ-Nv-N3T" firstAttribute="top" secondItem="YiM-Fl-hJa" secondAttribute="bottom" constant="8" id="i0n-yk-hPS"/>
                             <constraint firstItem="SDZ-Nv-N3T" firstAttribute="leading" secondItem="ERx-hH-rdd" secondAttribute="leading" constant="20" id="ljg-17-2QD"/>
                             <constraint firstItem="YiM-Fl-hJa" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" id="m4e-1O-4X5"/>
+                            <constraint firstItem="m03-Za-Es1" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" id="qQI-I1-gBy"/>
                             <constraint firstItem="npY-Jt-CK9" firstAttribute="leading" secondItem="YiM-Fl-hJa" secondAttribute="trailing" constant="12" id="sXY-rT-WHS"/>
                             <constraint firstAttribute="bottom" secondItem="SDZ-Nv-N3T" secondAttribute="bottom" constant="20" id="u7o-GU-Hlr"/>
                         </constraints>

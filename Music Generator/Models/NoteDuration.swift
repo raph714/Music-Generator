@@ -16,13 +16,10 @@ enum NoteDuration: Int {
     case sixteenth = 2
     case thirtysecond = 3
     case sixyfourth = 4
-
+    
+    /// Returns the double value, with 1.0 representing a quarter note.
     var value: Double {
         return Double(1/pow(2.0, Double(self.rawValue)))
-    }
-    
-    var floatValue: Float {
-        return Float(value)
     }
     
     static func random(slowest: NoteDuration, fastest: NoteDuration) -> NoteDuration {

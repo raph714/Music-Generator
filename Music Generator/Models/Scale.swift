@@ -39,4 +39,45 @@ struct Scale {
     static var major: Scale {
         return Scale(noteValues: [0, 2, 4, 5, 7, 9, 11, 12])
     }
+    
+    func chord(for note: Note) -> [Note] {
+        guard let index = notes.firstIndex(of: note) else {
+            fatalError("Note not found in scale")
+        }
+        
+        var chord = [note]
+        
+        //for now each note passed in will be the top note of the chord
+        //find the root
+        if index - 4 >= 0 {
+            chord.append(notes[index - 4])
+        } else {
+            chord.append(notes[index + 3])
+        }
+        
+        //find the 3rd
+        if index - 2 >= 0 {
+            chord.append(notes[index - 2])
+        } else {
+            chord.append(notes[index + 5])
+        }
+        
+        return chord
+    }
+    
+    func root(for third: Note) -> Note {
+        guard let index = notes.firstIndex(of: third) else {
+            fatalError("Note not found in scale")
+        }
+
+        if index - 2 >= 0 {
+            let note = notes[index - 2]
+            print(note.letter, third.letter)
+            return notes[index - 2]
+        } else {
+            let note = notes[index + 5]
+            print(note.letter, third.letter)
+            return notes[index + 5]
+        }
+    }
 }

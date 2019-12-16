@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27F75B4F278BEA80AA417E2F /* libPods-Music Generator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */; };
+		CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0F51D823A0D4B700AA8409 /* Composition.swift */; };
 		CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DAFE2394655100F125CE /* AppDelegate.swift */; };
 		CBA9DB012394655100F125CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB002394655100F125CE /* ViewController.swift */; };
 		CBA9DB032394655100F125CE /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB022394655100F125CE /* Document.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Music Generator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0F51D823A0D4B700AA8409 /* Composition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
 		CBA9DAFB2394655100F125CE /* Music Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA9DAFE2394655100F125CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBA9DB002394655100F125CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,8 @@
 		CBA9DB232394672000F125CE /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		CBA9DB252394674000F125CE /* NoteDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDuration.swift; sourceTree = "<group>"; };
 		CBF5A00423946C62008F5042 /* MusicBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBox.swift; sourceTree = "<group>"; };
+		E9AC8CA7B3DF9997EFE1911C /* Pods-Music Generator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Generator.debug.xcconfig"; path = "Target Support Files/Pods-Music Generator/Pods-Music Generator.debug.xcconfig"; sourceTree = "<group>"; };
+		EAAF58B68A77A1B91E99380F /* Pods-Music Generator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Generator.release.xcconfig"; path = "Target Support Files/Pods-Music Generator/Pods-Music Generator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27F75B4F278BEA80AA417E2F /* libPods-Music Generator.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,12 +74,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9DF858A67A67F739A4388F80 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9AC8CA7B3DF9997EFE1911C /* Pods-Music Generator.debug.xcconfig */,
+				EAAF58B68A77A1B91E99380F /* Pods-Music Generator.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		ACEF96B77D451B5BB548BBCB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CBA9DAF22394655100F125CE = {
 			isa = PBXGroup;
 			children = (
 				CBA9DAFD2394655100F125CE /* Music Generator */,
 				CBA9DB152394655300F125CE /* Music GeneratorTests */,
 				CBA9DAFC2394655100F125CE /* Products */,
+				9DF858A67A67F739A4388F80 /* Pods */,
+				ACEF96B77D451B5BB548BBCB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,10 +139,11 @@
 		CBF5A00623946DAA008F5042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CBA9DB21239466F900F125CE /* Scale.swift */,
+				CB0F51D823A0D4B700AA8409 /* Composition.swift */,
+				CBF5A00423946C62008F5042 /* MusicBox.swift */,
 				CBA9DB232394672000F125CE /* Note.swift */,
 				CBA9DB252394674000F125CE /* NoteDuration.swift */,
-				CBF5A00423946C62008F5042 /* MusicBox.swift */,
+				CBA9DB21239466F900F125CE /* Scale.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +155,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBA9DB1B2394655300F125CE /* Build configuration list for PBXNativeTarget "Music Generator" */;
 			buildPhases = (
+				F9D683D20BDFAFA91B780E64 /* [CP] Check Pods Manifest.lock */,
 				CBA9DAF72394655100F125CE /* Sources */,
 				CBA9DAF82394655100F125CE /* Frameworks */,
 				CBA9DAF92394655100F125CE /* Resources */,
@@ -216,6 +244,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F9D683D20BDFAFA91B780E64 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Music Generator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CBA9DAF72394655100F125CE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -227,6 +280,7 @@
 				CBF5A00523946C62008F5042 /* MusicBox.swift in Sources */,
 				CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */,
 				CBA9DB22239466F900F125CE /* Scale.swift in Sources */,
+				CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */,
 				CBA9DB032394655100F125CE /* Document.swift in Sources */,
 				CBA9DB242394672000F125CE /* Note.swift in Sources */,
 			);
@@ -377,6 +431,7 @@
 		};
 		CBA9DB1C2394655300F125CE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9AC8CA7B3DF9997EFE1911C /* Pods-Music Generator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Music Generator/Music_Generator.entitlements";
@@ -397,6 +452,7 @@
 		};
 		CBA9DB1D2394655300F125CE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAAF58B68A77A1B91E99380F /* Pods-Music Generator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Music Generator/Music_Generator.entitlements";
