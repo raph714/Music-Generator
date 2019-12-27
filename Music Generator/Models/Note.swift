@@ -24,7 +24,7 @@ class Note {
         return Note(value: value, duration: duration, location: location)
     }
     
-    static func silence(duration: NoteDuration, location: Double) -> Note {
+    static func rest(duration: NoteDuration, location: Double) -> Note {
         return Note(value: nil, duration: duration, location: location)
     }
 }

@@ -11,6 +11,8 @@ import Cocoa
 
 class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
+    @IBOutlet weak var accompanymentPopupButton: NSPopUpButton!
+    @IBOutlet weak var restType: NSPopUpButton!
 
     private var musicBox: MusicBox!
     private var composition: Composition!
@@ -30,18 +32,32 @@ class ViewController: NSViewController {
     }
     
     @IBAction func playTwelveNote(sender: Any) {
-        textField.stringValue = ""
-        composition.scale = Scale.twelveTone
-        composeAndPlay()
+        composeAndPlay(scale: Scale.twelveTone)
     }
     
     @IBAction func playMajor(sender: Any) {
-        textField.stringValue = ""
-        composition.scale = Scale.major
-        composeAndPlay()
+        composeAndPlay(scale: Scale.major)
     }
     
-    private func composeAndPlay() {
+    @IBAction func playMinor(sender: Any) {
+        composeAndPlay(scale: Scale.minor)
+    }
+    
+    private func composeAndPlay(scale: Scale) {
+        textField.stringValue = ""
+        composition.scale = scale
+        
+        if let accompanyment = accompanymentPopupButton.selectedItem?.identifier?.rawValue,
+            let accVal = AccompanymentType(rawValue: accompanyment) {
+            composition.accompanymentType = accVal
+        }
+        
+        
+        if let rest = restType.selectedItem?.identifier?.rawValue,
+            let restVal = Rests(rawValue: rest){
+            composition.restAmount = restVal
+        }
+        
         composition.reset()
         composition.compose()
         musicBox.play(composition: composition)

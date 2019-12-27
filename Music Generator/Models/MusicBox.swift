@@ -25,25 +25,24 @@ class MusicBox {
         addNotes(in: composition.melody, to: track)
         addNotes(in: composition.harmony, to: track)
         
+        sequencer?.tempo = composition.tempo
+        sequencer?.overriddenSequenceLength = composition.length
         sequencer?.shouldLoop = true
         sequencer?.startPlayback()
     }
     
     private func addNotes(in array: [Note], to track: MIKMIDITrack) {
-        var position: Double = 0
         for note in array {
             guard let value = note.value else {
-                position += note.duration.value
                 continue
             }
             
-            let event = MIKMIDINoteEvent(timeStamp: position,
+            let event = MIKMIDINoteEvent(timeStamp: note.location,
                                          note: value,
                                          velocity: 65,
                                          duration: Float32(note.duration.value),
                                          channel: 0)
             track.addEvent(event)
-            position += note.duration.value
         }
     }
     

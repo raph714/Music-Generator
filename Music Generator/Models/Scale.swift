@@ -27,9 +27,15 @@ struct Scale {
         return tones[Int.random(in: 0...tones.count-1)]
     }
     
-    func random(at randomOctave: [UInt8], duration: NoteDuration, location: Double) -> Note {
+    func random(at randomOctave: [UInt8], duration: NoteDuration, location: Double, restProbability: Float) -> Note {
         let octave = Int.random(in: 0...randomOctave.count - 1)
-        return Note.from(tone: random, at: randomOctave[octave], duration: duration, location: location)
+        let rest = Float.random(in: 0...1)
+        
+        if rest < restProbability {
+            return Note.rest(duration: duration, location: location)
+        } else {
+            return Note.from(tone: random, at: randomOctave[octave], duration: duration, location: location)
+        }
     }
     
     func random(number: Int) -> [UInt8] {
@@ -96,11 +102,9 @@ struct Scale {
 
         if index - 2 >= 0 {
             let note = tones[index - 2]
-            print(note.letter)
             return note
         } else {
             let note = tones[index + 5]
-            print(note.letter)
             return note
         }
     }
