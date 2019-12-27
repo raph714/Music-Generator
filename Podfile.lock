@@ -1,21 +1,16 @@
 PODS:
-  - AudioKit (4.9.3):
-    - AudioKit/Core (= 4.9.3)
-    - AudioKit/UI (= 4.9.3)
-  - AudioKit/Core (4.9.3)
-  - AudioKit/UI (4.9.3):
-    - AudioKit/Core
+  - MIKMIDI (1.7.0)
 
 DEPENDENCIES:
-  - AudioKit (~> 4.0)
+  - MIKMIDI
 
 SPEC REPOS:
   trunk:
-    - AudioKit
+    - MIKMIDI
 
 SPEC CHECKSUMS:
-  AudioKit: d025ecbb68f567bba15dab7ea80b8991155729f9
+  MIKMIDI: a9192db16687fcf1d2c82b98492b999fa8ede7c6
 
-PODFILE CHECKSUM: fa519e20edb8712ada67201400af9319df0d6c9c
+PODFILE CHECKSUM: cb6a209296dba547af50fb733c5c096c748c1af8
 
 COCOAPODS: 1.8.4

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NoteDuration: Int {
+enum NoteDuration: Int, CaseIterable {
     case whole = -2
     case half = -1
     case quarter = 0

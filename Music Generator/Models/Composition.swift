@@ -8,55 +8,46 @@
 
 import Foundation
 
-struct NoteEvent {
-    let note: Note
-    let location: Double
-    let duration: NoteDuration
-}
-
 protocol CompositionDelegate: AnyObject {
-    func willAdd(note: Note, duration: NoteDuration)
+    func willAdd(note: Note)
 }
 
 class Composition {
-    var melody = [NoteEvent]()
-    var harmony = [NoteEvent]()
+    var melody = [Note]()
+    var harmony = [Note]()
+    var scale = Scale.major
+    var timeSignature = TimeSignature.fourFour
+    var totalMeasures: Int = 2
     
     var delegate: CompositionDelegate?
     
-    let slowest: NoteDuration = .half
-    let fastest: NoteDuration = .eighth
+    let slowest: NoteDuration = .quarter
+    let fastest: NoteDuration = .sixteenth
     
     func reset() {
         melody.removeAll()
         harmony.removeAll()
     }
-    
-    func compose(with scale: Scale) {
-        let randomNotes = scale.randomized()
-        
-        var location: Double = 0
-        
-        for index in 0...randomNotes.count-1 {
-            let noteValue = randomNotes[index]
-            let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
 
-            delegate?.willAdd(note: noteValue, duration: duration)
-            
-            let event = NoteEvent(note: noteValue, location: location, duration: duration)
-            melody.append(event)
-            
-            
-            if location == 0 {
-                let root = scale.root(for: event.note)
-                let hevent = NoteEvent(note: root, location: event.location, duration: duration)
-                harmony.append(hevent)
-            } else if duration == slowest {
-                let root = scale.root(for: event.note)
-                let hevent = NoteEvent(note: root, location: event.location, duration: slowest)
-                harmony.append(hevent)
+    func compose() {
+        var location: Double = 0
+    
+        while location < 16 {
+            let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
+            let note = scale.random(at: [5, 6, 7], duration: duration, location: location)
+            delegate?.willAdd(note: note)
+
+            melody.append(note)
+
+            if (location == 0 || duration == slowest),
+                let val = note.value {
+                let root = scale.root(for: val)
+                let harmonyNote = Note.from(tone: root, at: 4, duration: duration, location: location)
+                harmony.append(harmonyNote)
+            } else {
+                harmony.append(Note.silence(duration: duration, location: location))
             }
-            
+
             location += duration.value
         }
     }

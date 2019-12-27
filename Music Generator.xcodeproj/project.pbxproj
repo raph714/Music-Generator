@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27F75B4F278BEA80AA417E2F /* libPods-Music Generator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */; };
 		CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0F51D823A0D4B700AA8409 /* Composition.swift */; };
 		CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DAFE2394655100F125CE /* AppDelegate.swift */; };
 		CBA9DB012394655100F125CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB002394655100F125CE /* ViewController.swift */; };
@@ -19,7 +18,10 @@
 		CBA9DB22239466F900F125CE /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB21239466F900F125CE /* Scale.swift */; };
 		CBA9DB242394672000F125CE /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB232394672000F125CE /* Note.swift */; };
 		CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB252394674000F125CE /* NoteDuration.swift */; };
+		CBE089BF23B48E2C002F2F39 /* TimeSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */; };
+		CBE089C123B49A39002F2F39 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE089C023B49A39002F2F39 /* Measure.swift */; };
 		CBF5A00523946C62008F5042 /* MusicBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF5A00423946C62008F5042 /* MusicBox.swift */; };
+		F6E003192795795A83312AD6 /* Pods_Music_Generator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E8851CBAB04AA8208C19F4 /* Pods_Music_Generator.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Music Generator.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		10E8851CBAB04AA8208C19F4 /* Pods_Music_Generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0F51D823A0D4B700AA8409 /* Composition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
 		CBA9DAFB2394655100F125CE /* Music Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA9DAFE2394655100F125CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		CBA9DB21239466F900F125CE /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		CBA9DB232394672000F125CE /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		CBA9DB252394674000F125CE /* NoteDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDuration.swift; sourceTree = "<group>"; };
+		CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSignature.swift; sourceTree = "<group>"; };
+		CBE089C023B49A39002F2F39 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		CBF5A00423946C62008F5042 /* MusicBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBox.swift; sourceTree = "<group>"; };
 		E9AC8CA7B3DF9997EFE1911C /* Pods-Music Generator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Generator.debug.xcconfig"; path = "Target Support Files/Pods-Music Generator/Pods-Music Generator.debug.xcconfig"; sourceTree = "<group>"; };
 		EAAF58B68A77A1B91E99380F /* Pods-Music Generator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Generator.release.xcconfig"; path = "Target Support Files/Pods-Music Generator/Pods-Music Generator.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27F75B4F278BEA80AA417E2F /* libPods-Music Generator.a in Frameworks */,
+				F6E003192795795A83312AD6 /* Pods_Music_Generator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +90,7 @@
 		ACEF96B77D451B5BB548BBCB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				53BE64BACA62C1003C50FE7E /* libPods-Music Generator.a */,
+				10E8851CBAB04AA8208C19F4 /* Pods_Music_Generator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -140,10 +144,12 @@
 			isa = PBXGroup;
 			children = (
 				CB0F51D823A0D4B700AA8409 /* Composition.swift */,
+				CBE089C023B49A39002F2F39 /* Measure.swift */,
 				CBF5A00423946C62008F5042 /* MusicBox.swift */,
 				CBA9DB232394672000F125CE /* Note.swift */,
 				CBA9DB252394674000F125CE /* NoteDuration.swift */,
 				CBA9DB21239466F900F125CE /* Scale.swift */,
+				CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,6 +165,7 @@
 				CBA9DAF72394655100F125CE /* Sources */,
 				CBA9DAF82394655100F125CE /* Frameworks */,
 				CBA9DAF92394655100F125CE /* Resources */,
+				62E1B7A4A6EC85FCDAED3142 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -245,6 +252,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		62E1B7A4A6EC85FCDAED3142 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Generator/Pods-Music Generator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Music Generator/Pods-Music Generator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Music Generator/Pods-Music Generator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F9D683D20BDFAFA91B780E64 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -276,8 +300,10 @@
 			files = (
 				CBA9DB062394655100F125CE /* Document.xcdatamodeld in Sources */,
 				CBA9DB012394655100F125CE /* ViewController.swift in Sources */,
+				CBE089C123B49A39002F2F39 /* Measure.swift in Sources */,
 				CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */,
 				CBF5A00523946C62008F5042 /* MusicBox.swift in Sources */,
+				CBE089BF23B48E2C002F2F39 /* TimeSignature.swift in Sources */,
 				CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */,
 				CBA9DB22239466F900F125CE /* Scale.swift in Sources */,
 				CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */,

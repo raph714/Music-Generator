@@ -8,15 +8,23 @@
 
 import Foundation
 
-struct Note: Hashable {
-    let tonalValue: UInt8
+class Note {
+    let value: UInt8?
+    let duration: NoteDuration
+    let location: Double
     
-    func value(at octave: UInt8) -> UInt8 {
-        return tonalValue + (12 * octave)
+    init(value: UInt8?, duration: NoteDuration, location: Double) {
+        self.value = value
+        self.duration = duration
+        self.location = location
     }
     
-    var letter: String {
-        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        return notes[Int(tonalValue) % 12]
+    static func from(tone: UInt8, at octave: UInt8, duration: NoteDuration, location: Double) -> Note {
+        let value = tone + (12 * octave)
+        return Note(value: value, duration: duration, location: location)
+    }
+    
+    static func silence(duration: NoteDuration, location: Double) -> Note {
+        return Note(value: nil, duration: duration, location: location)
     }
 }

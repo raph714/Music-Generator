@@ -31,12 +31,19 @@ class ViewController: NSViewController {
     
     @IBAction func playTwelveNote(sender: Any) {
         textField.stringValue = ""
+        composition.scale = Scale.twelveTone
+        composeAndPlay()
     }
     
     @IBAction func playMajor(sender: Any) {
         textField.stringValue = ""
+        composition.scale = Scale.major
+        composeAndPlay()
+    }
+    
+    private func composeAndPlay() {
         composition.reset()
-        composition.compose(with: Scale.major)
+        composition.compose()
         musicBox.play(composition: composition)
     }
     
@@ -46,8 +53,8 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: CompositionDelegate {
-    func willAdd(note: Note, duration: NoteDuration) {
-        textField.stringValue.append(contentsOf: "\(note.letter), \(duration)\n")
+    func willAdd(note: Note) {
+        textField.stringValue.append(contentsOf: "\(note.value?.letter ?? "rest"), \(note.duration)\n")
     }
 }
 

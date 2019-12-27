@@ -7,56 +7,47 @@
 //
 
 import Foundation
-import AudioToolbox
-import AudioKit
+import MIKMIDI
 
 class MusicBox {
-    let oscBank = AKOscillatorBank()
-    var sequencer: AKSequencer!
-    var midi: AKMIDI!
+    private var sequencer: MIKMIDISequencer?
     
     init() {
-        oscBank.attackDuration = 0.05
-        oscBank.decayDuration = 0.1
-        oscBank.sustainLevel = 1.0
-        oscBank.releaseDuration = 0.3
     }
 
     func play(composition: Composition) {
         stop()
-        sequencer = AKSequencer()
-        midi = AKMIDI()
-
-        let midiNode = AKMIDINode(node: oscBank)
         
-        _ = sequencer.addTrack(for: midiNode)
-        sequencer.length = 0.0
-        sequencer.tracks[0].clear()
+        let sequence = MIKMIDISequence()
+        let track = try! sequence.addTrack()
+        sequencer = MIKMIDISequencer(sequence: sequence)
         
-        for event in composition.melody {
-            sequencer.tracks[0].add(noteNumber: event.note.value(at: 5),
-                velocity: 65,
-                position: event.location,
-                duration: event.duration.value)
-            sequencer.length += event.duration.value
+        addNotes(in: composition.melody, to: track)
+        addNotes(in: composition.harmony, to: track)
+        
+        sequencer?.shouldLoop = true
+        sequencer?.startPlayback()
+    }
+    
+    private func addNotes(in array: [Note], to track: MIKMIDITrack) {
+        var position: Double = 0
+        for note in array {
+            guard let value = note.value else {
+                position += note.duration.value
+                continue
+            }
+            
+            let event = MIKMIDINoteEvent(timeStamp: position,
+                                         note: value,
+                                         velocity: 65,
+                                         duration: Float32(note.duration.value),
+                                         channel: 0)
+            track.addEvent(event)
+            position += note.duration.value
         }
-        
-        for event in composition.harmony {
-            sequencer.tracks[0].add(noteNumber: event.note.value(at: 4),
-                                    velocity: 65,
-                                    position: event.location,
-                                    duration: event.duration.value)
-        }
-        
-        AudioKit.output = midiNode
-        try! AudioKit.start()
-        midiNode.enableMIDI(midi.client, name: "midiNode midi in")
-        sequencer.tempo = 72
-        sequencer.loopEnabled = true
-        sequencer.play()
     }
     
     func stop() {
-        try! AudioKit.stop()
+        sequencer?.stop()
     }
 }
