@@ -12,7 +12,15 @@ import Cocoa
 class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var accompanymentPopupButton: NSPopUpButton!
-    @IBOutlet weak var restType: NSPopUpButton!
+    @IBOutlet weak var scaleTypePopup: NSPopUpButton!
+    @IBOutlet weak var restTypePopup: NSPopUpButton!
+    @IBOutlet weak var slowestNotePopup: NSPopUpButton!
+    @IBOutlet weak var fastestNotePopup: NSPopUpButton!
+    @IBOutlet weak var tempoTextField: NSTextField!
+    @IBOutlet weak var barsTextField: NSTextField!
+    
+    @IBOutlet weak var timeSignatureBeats: NSTextField!
+    @IBOutlet weak var timeSignatureDurationPopup: NSPopUpButton!
 
     private var musicBox: MusicBox!
     private var composition: Composition!
@@ -31,33 +39,41 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func playTwelveNote(sender: Any) {
-        composeAndPlay(scale: Scale.twelveTone)
-    }
-    
-    @IBAction func playMajor(sender: Any) {
-        composeAndPlay(scale: Scale.major)
-    }
-    
-    @IBAction func playMinor(sender: Any) {
-        composeAndPlay(scale: Scale.minor)
-    }
-    
-    private func composeAndPlay(scale: Scale) {
+    @IBAction func play(sender: Any) {
         textField.stringValue = ""
-        composition.scale = scale
+        
+        if let scaleString = scaleTypePopup.selectedItem?.identifier?.rawValue,
+            let scale = ScaleType(rawValue: scaleString) {
+            composition.scale = scale.value
+        }
+        
+        if let slowest: Int = slowestNotePopup.selectedItem?.tag,
+            let duration = NoteDuration(rawValue: slowest) {
+            composition.slowest = duration
+        }
+        
+        if let fastest: Int = fastestNotePopup.selectedItem?.tag,
+            let duration = NoteDuration(rawValue: fastest) {
+            composition.fastest = duration
+        }
+        
+        if let signatureDuration: Int = timeSignatureDurationPopup.selectedItem?.tag,
+            let duration = NoteDuration(rawValue: signatureDuration) {
+            composition.timeSignature = TimeSignature(beats: timeSignatureBeats.integerValue, duration: duration)
+        }
         
         if let accompanyment = accompanymentPopupButton.selectedItem?.identifier?.rawValue,
             let accVal = AccompanymentType(rawValue: accompanyment) {
             composition.accompanymentType = accVal
         }
         
-        
-        if let rest = restType.selectedItem?.identifier?.rawValue,
+        if let rest = restTypePopup.selectedItem?.identifier?.rawValue,
             let restVal = Rests(rawValue: rest){
             composition.restAmount = restVal
         }
         
+        composition.tempo = tempoTextField.doubleValue
+        composition.totalMeasures = barsTextField.integerValue
         composition.reset()
         composition.compose()
         musicBox.play(composition: composition)

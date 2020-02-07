@@ -8,45 +8,46 @@
 
 import Foundation
 
+enum ScaleType: String {
+    case twelve
+    case major
+    case minor
+
+    var value: Scale {
+        switch self {
+        case .twelve:
+            return Scale(noteValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        case .major:
+            return Scale(noteValues: [0, 2, 4, 5, 7, 9, 11])
+        case .minor:
+            return Scale(noteValues: [0, 2, 3, 5, 7, 8, 10])
+        }
+    }
+}
+
+enum ScaleVariation {
+    case majorFlavor
+    
+    var value: [Int: ScaleToneVariation] {
+        switch self {
+        case .majorFlavor:
+            return [4: .sharp, 6: .flat, 7: .flat]
+        }
+    }
+}
+
 struct Scale {
     let tones: [UInt8]
+    var variation = [Int: ScaleToneVariation]()
     
-    func randomized() -> [UInt8] {
-        var notesCopy = tones
-        var randomized = [UInt8]()
-        for _ in 0...tones.count-1 {
-            let randIndex = Int.random(in: 0...notesCopy.count-1)
-            let noteValue = notesCopy[randIndex]
-            randomized.append(noteValue)
-            notesCopy.remove(at: randIndex)
-        }
-        return randomized
+    private var randomToneIndex: Int {
+        return Int.random(in: 0...tones.count-1)
     }
     
-    var random: UInt8 {
-        return tones[Int.random(in: 0...tones.count-1)]
-    }
-    
-    func random(at randomOctave: [UInt8], duration: NoteDuration, location: Double, restProbability: Float) -> Note {
-        let octave = Int.random(in: 0...randomOctave.count - 1)
-        let rest = Float.random(in: 0...1)
-        
-        if rest < restProbability {
-            return Note.rest(duration: duration, location: location)
-        } else {
-            return Note.from(tone: random, at: randomOctave[octave], duration: duration, location: location)
-        }
-    }
-    
-    func random(number: Int) -> [UInt8] {
-        var randomized = [UInt8]()
-        for _ in 0...number {
-            let randIndex = Int.random(in: 0...tones.count-1)
-            let noteValue = tones[randIndex]
-            randomized.append(noteValue)
-        }
-
-        return randomized
+    func randomNote(at octave: UInt8) -> Note {
+        let rand = randomToneIndex
+        let variation = self.variation[rand] ?? .natural
+        return Note.from(scaleTone: rand, value: tones[rand], at: octave, variation: variation)
     }
     
     init(noteValues: [UInt8]) {
@@ -56,18 +57,6 @@ struct Scale {
         }
         
         self.tones = notes
-    }
-    
-    static var twelveTone: Scale {
-        return Scale(noteValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
-    }
-    
-    static var major: Scale {
-        return Scale(noteValues: [0, 2, 4, 5, 7, 9, 11])
-    }
-    
-    static var minor: Scale {
-        return Scale(noteValues: [0, 2, 3, 5, 7, 8, 10])
     }
     
     func chord(for tone: UInt8) -> [UInt8] {
@@ -93,6 +82,14 @@ struct Scale {
         }
         
         return chord
+    }
+    
+    func rootToneIndex(for tone: Int) -> Int {
+        if tone - 2 >= 0 {
+            return tone
+        } else {
+            return tone + 5
+        }
     }
     
     func root(for third: UInt8) -> UInt8 {

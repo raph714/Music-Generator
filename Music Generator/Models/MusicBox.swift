@@ -33,14 +33,16 @@ class MusicBox {
     
     private func addNotes(in array: [Note], to track: MIKMIDITrack) {
         for note in array {
-            guard let value = note.value else {
+            guard let value = note.renderedValue,
+                let location = note.location,
+                let duration = note.duration else {
                 continue
             }
             
-            let event = MIKMIDINoteEvent(timeStamp: note.location,
+            let event = MIKMIDINoteEvent(timeStamp: location,
                                          note: value,
                                          velocity: 65,
-                                         duration: Float32(note.duration.value),
+                                         duration: Float32(duration.value),
                                          channel: 0)
             track.addEvent(event)
         }
