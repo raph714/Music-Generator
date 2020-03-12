@@ -21,7 +21,6 @@ class Note {
     var scaleTone: Int?
     var variation: ScaleToneVariation
     var duration: NoteDuration!
-    var location: Double!
     var octave: UInt8
     
     var renderedValue: UInt8? {
@@ -41,20 +40,25 @@ class Note {
         return newVal
     }
 
-    init(value: UInt8?, scaleTone: Int?, duration: NoteDuration?, location: Double?, variation: ScaleToneVariation = .natural, octave: UInt8) {
+    init(value: UInt8?, scaleTone: Int?, duration: NoteDuration?, variation: ScaleToneVariation = .natural, octave: UInt8) {
         self.value = value
         self.duration = duration
-        self.location = location
         self.scaleTone = scaleTone
         self.variation = variation
         self.octave = octave
     }
     
-    static func from(scaleTone: Int, value: UInt8, at octave: UInt8 = 4, duration: NoteDuration? = nil, location: Double? = nil, variation: ScaleToneVariation = .natural) -> Note {
-        return Note(value: value, scaleTone: scaleTone, duration: duration, location: location, variation: variation, octave: octave)
+    static func from(scaleTone: Int, value: UInt8, at octave: UInt8 = 4, duration: NoteDuration? = nil, variation: ScaleToneVariation = .natural) -> Note {
+        return Note(value: value, scaleTone: scaleTone, duration: duration, variation: variation, octave: octave)
     }
     
-    static func rest(duration: NoteDuration, location: Double) -> Note {
-        return Note(value: nil, scaleTone: nil, duration: duration, location: location, variation: .natural, octave: 4)
+    static func rest(duration: NoteDuration) -> Note {
+        return Note(value: nil, scaleTone: nil, duration: duration, variation: .natural, octave: 4)
+    }
+}
+
+extension Note: Equatable {
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        return lhs.value == rhs.value && lhs.duration == rhs.duration
     }
 }

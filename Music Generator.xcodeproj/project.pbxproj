@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0F51D823A0D4B700AA8409 /* Composition.swift */; };
+		CBA077572419E0410021DEA5 /* NoteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA077562419E0410021DEA5 /* NoteEvent.swift */; };
 		CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DAFE2394655100F125CE /* AppDelegate.swift */; };
 		CBA9DB012394655100F125CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB002394655100F125CE /* ViewController.swift */; };
 		CBA9DB032394655100F125CE /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB022394655100F125CE /* Document.swift */; };
@@ -18,6 +19,7 @@
 		CBA9DB22239466F900F125CE /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB21239466F900F125CE /* Scale.swift */; };
 		CBA9DB242394672000F125CE /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB232394672000F125CE /* Note.swift */; };
 		CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB252394674000F125CE /* NoteDuration.swift */; };
+		CBBE954A23EF357D008D4E3D /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBE954923EF357D008D4E3D /* Composer.swift */; };
 		CBE089BF23B48E2C002F2F39 /* TimeSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */; };
 		CBF5A00523946C62008F5042 /* MusicBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF5A00423946C62008F5042 /* MusicBox.swift */; };
 		F6E003192795795A83312AD6 /* Pods_Music_Generator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E8851CBAB04AA8208C19F4 /* Pods_Music_Generator.framework */; };
@@ -36,6 +38,7 @@
 /* Begin PBXFileReference section */
 		10E8851CBAB04AA8208C19F4 /* Pods_Music_Generator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Music_Generator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0F51D823A0D4B700AA8409 /* Composition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composition.swift; sourceTree = "<group>"; };
+		CBA077562419E0410021DEA5 /* NoteEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEvent.swift; sourceTree = "<group>"; };
 		CBA9DAFB2394655100F125CE /* Music Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA9DAFE2394655100F125CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBA9DB002394655100F125CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		CBA9DB21239466F900F125CE /* Scale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		CBA9DB232394672000F125CE /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		CBA9DB252394674000F125CE /* NoteDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDuration.swift; sourceTree = "<group>"; };
+		CBBE954923EF357D008D4E3D /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
 		CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSignature.swift; sourceTree = "<group>"; };
 		CBF5A00423946C62008F5042 /* MusicBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicBox.swift; sourceTree = "<group>"; };
 		E9AC8CA7B3DF9997EFE1911C /* Pods-Music Generator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Music Generator.debug.xcconfig"; path = "Target Support Files/Pods-Music Generator/Pods-Music Generator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -141,10 +145,12 @@
 		CBF5A00623946DAA008F5042 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CBBE954923EF357D008D4E3D /* Composer.swift */,
 				CB0F51D823A0D4B700AA8409 /* Composition.swift */,
 				CBF5A00423946C62008F5042 /* MusicBox.swift */,
 				CBA9DB232394672000F125CE /* Note.swift */,
 				CBA9DB252394674000F125CE /* NoteDuration.swift */,
+				CBA077562419E0410021DEA5 /* NoteEvent.swift */,
 				CBA9DB21239466F900F125CE /* Scale.swift */,
 				CBE089BE23B48E2C002F2F39 /* TimeSignature.swift */,
 			);
@@ -298,6 +304,8 @@
 				CBA9DB062394655100F125CE /* Document.xcdatamodeld in Sources */,
 				CBA9DB012394655100F125CE /* ViewController.swift in Sources */,
 				CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */,
+				CBBE954A23EF357D008D4E3D /* Composer.swift in Sources */,
+				CBA077572419E0410021DEA5 /* NoteEvent.swift in Sources */,
 				CBF5A00523946C62008F5042 /* MusicBox.swift in Sources */,
 				CBE089BF23B48E2C002F2F39 /* TimeSignature.swift in Sources */,
 				CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */,

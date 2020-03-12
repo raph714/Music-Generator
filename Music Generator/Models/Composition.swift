@@ -9,7 +9,7 @@
 import Foundation
 
 protocol CompositionDelegate: AnyObject {
-    func willAdd(note: Note)
+    func didAdd(events: [NoteEvent])
 }
 
 enum AccompanymentType: String {
@@ -37,8 +37,7 @@ enum Rests: String {
 }
 
 class Composition {
-    var melody = [Note]()
-    var harmony = [Note]()
+    var noteEvents = [NoteEvent]()
     var scale = ScaleType.major.value
     var timeSignature = TimeSignature.fourFour
     var totalMeasures: Int = 2
@@ -56,8 +55,7 @@ class Composition {
     var fastest: NoteDuration = .sixteenth
     
     func reset() {
-        melody.removeAll()
-        harmony.removeAll()
+        noteEvents.removeAll()
     }
 
     func compose() {
@@ -75,17 +73,19 @@ class Composition {
             let note: Note
             
             if shouldRest {
-                note = Note.rest(duration: duration, location: location)
+                note = Note.rest(duration: duration)
             } else {
-                note = nextNote(duration: duration, location: location)
+                note = scale.randomNote(at: randomOctave)
+                note.duration = duration
             }
             
-            delegate?.willAdd(note: note)
-            melody.append(note)
+            noteEvents.append(NoteEvent(notes: [.melody: note], location: location))
             location += duration.value
         }
         
         generateHarmony()
+        
+        delegate?.didAdd(events: noteEvents)
     }
     
     private var randomOctave: UInt8 {
@@ -93,28 +93,27 @@ class Composition {
         return UInt8(octave)
     }
     
-    private func nextNote(duration: NoteDuration, location: Double) -> Note {
-        let octave = randomOctave
-        
-        var newNote: Note = scale.randomNote(at: octave)
-        
-        //avoid 6 and 11 semi tones.
-        if let lastNote = melody.last, let lastNoteValue = lastNote.value {
-            for _ in 0...100 {
-                let diff = abs(Int(newNote.value!) - Int(lastNoteValue)) % 12
-                if diff != 11 || diff != 6 {
-                    break
-                }
-                
-                newNote = scale.randomNote(at: octave)
-            }
-        }
-        
-        newNote.duration = duration
-        newNote.location = location
-
-        return newNote
-    }
+//    private func nextNote(duration: NoteDuration) -> Note {
+//        let octave = randomOctave
+//
+//        var newNote: Note = scale.randomNote(at: octave)
+//
+//        //avoid 6 and 11 semi tones.
+//        if let lastNote = noteEvents.last?.notes.first, let lastNoteValue = lastNote.value {
+//            for _ in 0...100 {
+//                let diff = abs(Int(newNote.value!) - Int(lastNoteValue)) % 12
+//                if diff != 11 || diff != 6 {
+//                    break
+//                }
+//
+//                newNote = scale.randomNote(at: octave)
+//            }
+//        }
+//
+//        newNote.duration = duration
+//
+//        return newNote
+//    }
     
     private var shouldRest: Bool {
         return Float.random(in: 0...1) < restAmount.percentage
@@ -124,17 +123,6 @@ class Composition {
         let startThird = length / 3
         let endThird = startThird * 2
         return location > startThird && location < endThird
-    }
-    
-    //gives us the last note played
-    private var lastNote: Note? {
-        for (_, note) in melody.enumerated().reversed() {
-            if note.value != nil {
-                return note
-            }
-        }
-        
-        return nil
     }
     
     private func generateHarmony() {
@@ -151,16 +139,18 @@ class Composition {
     }
     
     private func generateHarmonySlowest() {
-        for note in melody {
-            if note.duration == slowest {
-                addHarmony(for: note)
+        for event in noteEvents {
+            if let note = event.notes[.melody], note.duration == slowest {
+                addHarmony(for: note, at: event.location)
             }
         }
     }
     
     private func generateHarmonyAll() {
-        for note in melody {
-            addHarmony(for: note)
+        for event in noteEvents {
+            if let note = event.notes[.melody] {
+                addHarmony(for: note, at: event.location)
+            }
         }
     }
     
@@ -168,17 +158,10 @@ class Composition {
         var location: Double = 0
         
         while location < length {
-            //find the last note that happened before the time we want.
-            let note = melody.first { aNote -> Bool in
-                if aNote.location == location {
-                    return true
-                } else {
-                    return aNote.location + aNote.duration.value > location
-                }
-            }
+            let event = noteEvents.lastEvent(atOrBefore: location)
             
-            if let note = note {
-                addHarmony(for: note)
+            if let note = event?.notes[.melody] {
+                addHarmony(for: note, at: location)
             }
             
             location += timeSignature.duration.value
@@ -186,14 +169,15 @@ class Composition {
     }
     
     private func generateHarmonyRandom() {
-        for note in melody {
-            if Int.random(in: 0...1) > 0 {
-                addHarmony(for: note)
+        for event in noteEvents {
+            if let note = event.notes[.melody],
+                Int.random(in: 0...1) > 0 {
+                addHarmony(for: note, at: event.location)
             }
         }
     }
     
-    private func addHarmony(for note: Note) {
+    private func addHarmony(for note: Note, at location: Double) {
         guard let tone = note.scaleTone else {
             return
         }
@@ -203,8 +187,12 @@ class Composition {
                                     value: scale.tones[root],
                                     at: 4,
                                     duration: note.duration,
-                                    location: note.location,
                                     variation: scale.variation[root] ?? .natural)
-        harmony.append(harmonyNote)
+        
+        if let event = noteEvents.event(at: location) {
+            event.notes[.bass] = harmonyNote
+        } else {
+            noteEvents.append(NoteEvent(notes: [.bass: harmonyNote], location: location))
+        }
     }
 }

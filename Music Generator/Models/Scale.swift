@@ -31,7 +31,7 @@ enum ScaleVariation {
     var value: [Int: ScaleToneVariation] {
         switch self {
         case .majorFlavor:
-            return [4: .sharp, 6: .flat, 7: .flat]
+            return [6: .flat, 7: .flat]
         }
     }
 }

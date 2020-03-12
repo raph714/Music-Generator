@@ -32,6 +32,10 @@ class ViewController: NSViewController {
         composition = Composition()
         composition.delegate = self
     }
+    
+    override func viewDidAppear() {
+        view.window?.styleMask.insert(.resizable)
+    }
 
     override var representedObject: Any? {
         didSet {
@@ -85,8 +89,13 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: CompositionDelegate {
-    func willAdd(note: Note) {
-        textField.stringValue.append(contentsOf: "\(note.value?.letter ?? "rest"), \(note.duration)\n")
+    func didAdd(events: [NoteEvent]) {
+        for event in events.sorted {
+            let melody = event.notes[.melody]
+            let bass = event.notes[.bass]
+            
+            textField.stringValue.append(contentsOf: "Melody: \(melody?.value?.letter ?? "rest"), Harmony: \(bass?.value?.letter ?? "rest")\n")
+        }
     }
 }
 

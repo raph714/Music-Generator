@@ -22,8 +22,7 @@ class MusicBox {
         let track = try! sequence.addTrack()
         sequencer = MIKMIDISequencer(sequence: sequence)
         
-        addNotes(in: composition.melody, to: track)
-        addNotes(in: composition.harmony, to: track)
+        addNotes(in: composition.noteEvents, to: track)
         
         sequencer?.tempo = composition.tempo
         sequencer?.overriddenSequenceLength = composition.length
@@ -31,21 +30,26 @@ class MusicBox {
         sequencer?.startPlayback()
     }
     
-    private func addNotes(in array: [Note], to track: MIKMIDITrack) {
-        for note in array {
-            guard let value = note.renderedValue,
-                let location = note.location,
-                let duration = note.duration else {
-                continue
+    private func addNotes(in array: [NoteEvent], to track: MIKMIDITrack) {
+        for event in array {
+            event.notes.forEach { _, note in
+                add(note: note, to: track, location: event.location)
             }
-            
-            let event = MIKMIDINoteEvent(timeStamp: location,
-                                         note: value,
-                                         velocity: 65,
-                                         duration: Float32(duration.value),
-                                         channel: 0)
-            track.addEvent(event)
         }
+    }
+    
+    private func add(note: Note, to track: MIKMIDITrack, location: Double) {
+        guard let value = note.renderedValue,
+            let duration = note.duration else {
+                fatalError(String(describing: note))
+        }
+        
+        let event = MIKMIDINoteEvent(timeStamp: location,
+                                     note: value,
+                                     velocity: 65,
+                                     duration: Float32(duration.value),
+                                     channel: 0)
+        track.addEvent(event)
     }
     
     func stop() {

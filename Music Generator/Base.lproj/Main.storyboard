@@ -708,7 +708,7 @@
                 <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="Music_Generator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ERx-hH-rdd">
                         <rect key="frame" x="0.0" y="0.0" width="636" height="363"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SDZ-Nv-N3T">
                                 <rect key="frame" x="296" y="20" width="320" height="323"/>
@@ -725,7 +725,7 @@
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m03-Za-Es1">
                                 <rect key="frame" x="14" y="315" width="105" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="93" id="uUS-4P-HNQ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="93" id="uUS-4P-HNQ"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b4I-qa-W9a">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -753,7 +753,7 @@
                                                 <rect key="frame" x="73" y="-3" width="113" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Twelve Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TNx-qY-vFE" id="nOI-PT-8RC">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="F30-rd-sHC">
                                                         <items>
                                                             <menuItem title="Twelve Note" state="on" identifier="twelve" id="TNx-qY-vFE"/>
@@ -788,7 +788,7 @@
                                                 <rect key="frame" x="86" y="-3" width="118" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="mhy-cW-2Y0" id="FbK-39-gTJ">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="RQz-iX-msX">
                                                         <items>
                                                             <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="mhy-cW-2Y0"/>
@@ -827,7 +827,7 @@
                                                 <rect key="frame" x="83" y="-3" width="118" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="bUs-3D-ipk" id="qBp-Ny-TY1">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="oKI-Sl-bny">
                                                         <items>
                                                             <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bUs-3D-ipk"/>
@@ -951,14 +951,14 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rRi-SU-dPR">
                                                 <rect key="frame" x="112" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="bLa-EG-nFf" id="ySW-LJ-5xg">
+                                                <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="bLa-EG-nFf" id="ySW-LJ-5xg">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="nXh-2H-jvB">
                                                         <items>
-                                                            <menuItem title="Whole" tag="-2" identifier="whole" id="bLa-EG-nFf"/>
+                                                            <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bLa-EG-nFf"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="Hav-Wv-0Ma"/>
-                                                            <menuItem title="Quarter" state="on" identifier="quarter" id="Wj6-Rk-O1z"/>
+                                                            <menuItem title="Quarter" identifier="quarter" id="Wj6-Rk-O1z"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="QyK-Qi-eSG"/>
                                                             <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="oVh-rw-nOR"/>
                                                             <menuItem title="Thirtysecond" tag="3" identifier="thirtysecond" id="C0m-B3-R5v"/>
@@ -992,7 +992,7 @@
                                                 <rect key="frame" x="96" y="-3" width="77" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RId-kF-Chr" id="rA8-JH-Si4">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="loZ-Vt-936">
                                                         <items>
                                                             <menuItem title="None" state="on" identifier="none" id="RId-kF-Chr"/>
@@ -1027,7 +1027,7 @@
                                                 <rect key="frame" x="141" y="-3" width="118" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Slowest Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Db9-zb-oNv" id="1jC-dN-lVc">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="nJP-Id-1aZ">
                                                         <items>
                                                             <menuItem title="Slowest Note" state="on" identifier="slowest" id="Db9-zb-oNv"/>
@@ -1079,7 +1079,7 @@
                                 <rect key="frame" x="119" y="315" width="105" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6dj-2G-8Q0"/>
-                                    <constraint firstAttribute="width" constant="93" id="kcf-sb-cDP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="93" id="kcf-sb-cDP"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Play" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ezM-C7-UHb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1099,6 +1099,7 @@
                             <constraint firstItem="SDZ-Nv-N3T" firstAttribute="top" secondItem="ERx-hH-rdd" secondAttribute="top" constant="20" id="J1O-bm-Yxt"/>
                             <constraint firstItem="SDZ-Nv-N3T" firstAttribute="leading" secondItem="8Ji-VO-CHp" secondAttribute="trailing" constant="20" id="Ota-Ae-mXl"/>
                             <constraint firstItem="vMC-yt-c3k" firstAttribute="leading" secondItem="m03-Za-Es1" secondAttribute="trailing" constant="12" id="UZx-ow-7qu"/>
+                            <constraint firstItem="SDZ-Nv-N3T" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vMC-yt-c3k" secondAttribute="trailing" constant="8" symbolic="YES" id="dw0-SQ-faO"/>
                             <constraint firstAttribute="bottom" secondItem="SDZ-Nv-N3T" secondAttribute="bottom" constant="20" id="moV-wE-imm"/>
                             <constraint firstItem="8Ji-VO-CHp" firstAttribute="top" secondItem="m03-Za-Es1" secondAttribute="bottom" constant="20" id="q5o-xn-vLz"/>
                         </constraints>
