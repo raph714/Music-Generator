@@ -751,13 +751,13 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OfW-o7-nSm">
                                                 <rect key="frame" x="73" y="-3" width="113" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Twelve Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="TNx-qY-vFE" id="nOI-PT-8RC">
+                                                <popUpButtonCell key="cell" type="push" title="Major" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Psf-7q-t58" id="nOI-PT-8RC">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="F30-rd-sHC">
                                                         <items>
-                                                            <menuItem title="Twelve Note" state="on" identifier="twelve" id="TNx-qY-vFE"/>
-                                                            <menuItem title="Major" identifier="major" id="Psf-7q-t58"/>
+                                                            <menuItem title="Major" state="on" identifier="major" id="Psf-7q-t58"/>
+                                                            <menuItem title="Twelve Note" identifier="twelve" id="TNx-qY-vFE"/>
                                                             <menuItem title="Minor" identifier="minor" id="Ntl-Ox-NAy"/>
                                                         </items>
                                                     </menu>
@@ -786,14 +786,14 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tcZ-RW-pbX">
                                                 <rect key="frame" x="86" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="mhy-cW-2Y0" id="FbK-39-gTJ">
+                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2wM-Gd-MnV" id="FbK-39-gTJ">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="RQz-iX-msX">
                                                         <items>
+                                                            <menuItem title="Quarter" identifier="quarter" id="2wM-Gd-MnV"/>
                                                             <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="mhy-cW-2Y0"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="Cf8-KF-oB9"/>
-                                                            <menuItem title="Quarter" identifier="quarter" id="2wM-Gd-MnV"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="6nm-GE-mQt"/>
                                                             <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="MD7-lo-Md9"/>
                                                             <menuItem title="Thirtysecond" tag="3" identifier="thirtysecond" id="lWb-DB-i0K"/>
@@ -825,16 +825,16 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="muh-Ls-fIW">
                                                 <rect key="frame" x="83" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="bUs-3D-ipk" id="qBp-Ny-TY1">
+                                                <popUpButtonCell key="cell" type="push" title="Sixteenth" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="rjp-lq-cC5" id="qBp-Ny-TY1">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="oKI-Sl-bny">
                                                         <items>
+                                                            <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="rjp-lq-cC5"/>
                                                             <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bUs-3D-ipk"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="X7f-Sz-4sY"/>
                                                             <menuItem title="Quarter" identifier="quarter" id="4PV-Lp-P9z"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="B31-rp-kuQ"/>
-                                                            <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="rjp-lq-cC5"/>
                                                             <menuItem title="Thirtysecond" tag="3" identifier="thirtysecond" id="OuO-OP-Rwb"/>
                                                             <menuItem title="Sixtyfourth" tag="4" identifier="sixtyfourth" id="v7X-Ye-HWG"/>
                                                         </items>
@@ -893,7 +893,7 @@
                                             </textField>
                                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pGa-g1-A8u">
                                                 <rect key="frame" x="36" y="0.0" width="50" height="21"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="2" drawsBackground="YES" id="ATv-qP-PPh">
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="4" drawsBackground="YES" id="ATv-qP-PPh">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -951,14 +951,14 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rRi-SU-dPR">
                                                 <rect key="frame" x="112" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Whole" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="-2" imageScaling="proportionallyDown" inset="2" selectedItem="bLa-EG-nFf" id="ySW-LJ-5xg">
+                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Wj6-Rk-O1z" id="ySW-LJ-5xg">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
                                                     <menu key="menu" id="nXh-2H-jvB">
                                                         <items>
+                                                            <menuItem title="Quarter" identifier="quarter" id="Wj6-Rk-O1z"/>
                                                             <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bLa-EG-nFf"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="Hav-Wv-0Ma"/>
-                                                            <menuItem title="Quarter" identifier="quarter" id="Wj6-Rk-O1z"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="QyK-Qi-eSG"/>
                                                             <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="oVh-rw-nOR"/>
                                                             <menuItem title="Thirtysecond" tag="3" identifier="thirtysecond" id="C0m-B3-R5v"/>

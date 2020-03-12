@@ -185,7 +185,7 @@ class Composition {
         let root = scale.rootToneIndex(for: Int(tone))
         let harmonyNote = Note.from(scaleTone: root,
                                     value: scale.tones[root],
-                                    at: 4,
+                                    at: 3,
                                     duration: note.duration,
                                     variation: scale.variation[root] ?? .natural)
         
