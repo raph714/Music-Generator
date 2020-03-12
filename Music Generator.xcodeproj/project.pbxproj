@@ -11,7 +11,6 @@
 		CBA077572419E0410021DEA5 /* NoteEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA077562419E0410021DEA5 /* NoteEvent.swift */; };
 		CBA9DAFF2394655100F125CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DAFE2394655100F125CE /* AppDelegate.swift */; };
 		CBA9DB012394655100F125CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB002394655100F125CE /* ViewController.swift */; };
-		CBA9DB032394655100F125CE /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB022394655100F125CE /* Document.swift */; };
 		CBA9DB062394655100F125CE /* Document.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CBA9DB042394655100F125CE /* Document.xcdatamodeld */; };
 		CBA9DB082394655300F125CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBA9DB072394655300F125CE /* Assets.xcassets */; };
 		CBA9DB0B2394655300F125CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA9DB092394655300F125CE /* Main.storyboard */; };
@@ -42,7 +41,6 @@
 		CBA9DAFB2394655100F125CE /* Music Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA9DAFE2394655100F125CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBA9DB002394655100F125CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CBA9DB022394655100F125CE /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		CBA9DB052394655100F125CE /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
 		CBA9DB072394655300F125CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBA9DB0A2394655300F125CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 				CBA9DB0D2394655300F125CE /* Music_Generator.entitlements */,
 				CBA9DB0C2394655300F125CE /* Info.plist */,
 				CBA9DAFE2394655100F125CE /* AppDelegate.swift */,
-				CBA9DB022394655100F125CE /* Document.swift */,
 				CBA9DB002394655100F125CE /* ViewController.swift */,
 				CBA9DB072394655300F125CE /* Assets.xcassets */,
 				CBA9DB042394655100F125CE /* Document.xcdatamodeld */,
@@ -311,7 +308,6 @@
 				CBA9DB262394674000F125CE /* NoteDuration.swift in Sources */,
 				CBA9DB22239466F900F125CE /* Scale.swift in Sources */,
 				CB0F51D923A0D4B700AA8409 /* Composition.swift in Sources */,
-				CBA9DB032394655100F125CE /* Document.swift in Sources */,
 				CBA9DB242394672000F125CE /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

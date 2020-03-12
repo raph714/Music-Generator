@@ -41,7 +41,7 @@ class MusicBox {
     private func add(note: Note, to track: MIKMIDITrack, location: Double) {
         guard let value = note.renderedValue,
             let duration = note.duration else {
-                fatalError(String(describing: note))
+                return
         }
         
         let event = MIKMIDINoteEvent(timeStamp: location,

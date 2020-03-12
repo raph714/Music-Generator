@@ -62,11 +62,11 @@ class Composition {
         var location: Double = 0
     
         while location < length {
-            if isMiddleThird(location: location) {
-                scale.variation = ScaleVariation.majorFlavor.value
-            } else {
-                scale.variation = [:]
-            }
+//            if isMiddleThird(location: location) {
+//                scale.variation = ScaleVariation.majorFlavor.value
+//            } else {
+//                scale.variation = [:]
+//            }
             
             let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
             

@@ -85,11 +85,24 @@ struct Scale {
     }
     
     func rootToneIndex(for tone: Int) -> Int {
-        if tone - 2 >= 0 {
-            return tone
-        } else {
-            return tone + 5
+        let tone = tones[tone]
+        
+        //let's see if a fifth is in range
+        if let index = tones.firstIndex(where: {$0 == (tone + 5) % 12}) {
+            return index
         }
+        
+        //ok no fifth, let's see if the third is there
+        if let index = tones.firstIndex(where: {$0 == (tone + 8) % 12}) {
+            return index
+        }
+        
+        //oops, how about a minor third?
+        if let index = tones.firstIndex(where: {$0 == (tone + 9) % 12}) {
+            return index
+        }
+        
+        fatalError()
     }
     
     func root(for third: UInt8) -> UInt8 {
