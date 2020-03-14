@@ -37,21 +37,15 @@ enum ScaleVariation {
 }
 
 struct Scale {
-    let tones: [UInt8]
+    let tones: [Int]
     var variation = [Int: ScaleToneVariation]()
     
-    private var randomToneIndex: Int {
+    var randomToneIndex: Int {
         return Int.random(in: 0...tones.count-1)
     }
     
-    func randomNote(at octave: UInt8) -> Note {
-        let rand = randomToneIndex
-        let variation = self.variation[rand] ?? .natural
-        return Note.from(scaleTone: rand, value: tones[rand], at: octave, variation: variation)
-    }
-    
-    init(noteValues: [UInt8]) {
-        var notes: [UInt8] = []
+    init(noteValues: [Int]) {
+        var notes: [Int] = []
         for note in noteValues {
             notes.append(note)
         }
@@ -59,7 +53,7 @@ struct Scale {
         self.tones = notes
     }
     
-    func chord(for tone: UInt8) -> [UInt8] {
+    func chord(for tone: Int) -> [Int] {
         guard let index = tones.firstIndex(of: tone) else {
             fatalError("Note not found in scale")
         }
@@ -105,7 +99,7 @@ struct Scale {
         fatalError()
     }
     
-    func root(for third: UInt8) -> UInt8 {
+    func root(for third: Int) -> Int {
         guard let index = tones.firstIndex(of: third % 12) else {
             fatalError("Note not found in scale")
         }
@@ -117,12 +111,5 @@ struct Scale {
             let note = tones[index + 5]
             return note
         }
-    }
-}
-
-extension UInt8 {
-    var letter: String {
-        let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        return notes[Int(self) % 12]
     }
 }

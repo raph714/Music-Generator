@@ -41,7 +41,7 @@ class Composition {
     var scale = ScaleType.major.value
     var timeSignature = TimeSignature.fourFour
     var totalMeasures: Int = 2
-    var tempo: Float64 = 172
+    var tempo: Float64 = 72
     var accompanymentType: AccompanymentType = .downbeat
     var restAmount: Rests = .none
     
@@ -62,11 +62,11 @@ class Composition {
         var location: Double = 0
     
         while location < length {
-//            if isMiddleThird(location: location) {
-//                scale.variation = ScaleVariation.majorFlavor.value
-//            } else {
-//                scale.variation = [:]
-//            }
+            if isMiddleThird(location: location) {
+                scale.variation = ScaleVariation.majorFlavor.value
+            } else {
+                scale.variation = [:]
+            }
             
             let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
             
@@ -75,7 +75,7 @@ class Composition {
             if shouldRest {
                 note = Note.rest(duration: duration)
             } else {
-                note = scale.randomNote(at: randomOctave)
+                note = randomNote(at: randomOctave)
                 note.duration = duration
             }
             
@@ -87,33 +87,31 @@ class Composition {
         
         delegate?.didAdd(events: noteEvents)
     }
-    
-    private var randomOctave: UInt8 {
-        let octave = Int.random(in: 4...6)
-        return UInt8(octave)
+
+    func randomNote(at octave: Int) -> Note {
+        var foundNewNote = false
+        var newNote: Note!
+
+        while !foundNewNote {
+            let rand = scale.randomToneIndex
+            let variation = scale.variation[rand] ?? .natural
+
+            newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: octave, variation: variation)
+
+            let lastNote = noteEvents.lastEvent?.notes[.melody]
+            newNote.moveTo(within: 12, of: lastNote)
+
+            let isAtBadInterval = newNote.isAt(interval: 6, to: lastNote) && newNote.isAt(interval: 11, to: lastNote)
+            foundNewNote = !isAtBadInterval
+        }
+
+        return newNote
     }
     
-//    private func nextNote(duration: NoteDuration) -> Note {
-//        let octave = randomOctave
-//
-//        var newNote: Note = scale.randomNote(at: octave)
-//
-//        //avoid 6 and 11 semi tones.
-//        if let lastNote = noteEvents.last?.notes.first, let lastNoteValue = lastNote.value {
-//            for _ in 0...100 {
-//                let diff = abs(Int(newNote.value!) - Int(lastNoteValue)) % 12
-//                if diff != 11 || diff != 6 {
-//                    break
-//                }
-//
-//                newNote = scale.randomNote(at: octave)
-//            }
-//        }
-//
-//        newNote.duration = duration
-//
-//        return newNote
-//    }
+    private var randomOctave: Int {
+        let octave = Int.random(in: 4...6)
+        return octave
+    }
     
     private var shouldRest: Bool {
         return Float.random(in: 0...1) < restAmount.percentage

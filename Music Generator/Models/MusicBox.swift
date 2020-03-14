@@ -45,7 +45,7 @@ class MusicBox {
         }
         
         let event = MIKMIDINoteEvent(timeStamp: location,
-                                     note: value,
+                                     note: UInt8(value),
                                      velocity: 65,
                                      duration: Float32(duration.value),
                                      channel: 0)

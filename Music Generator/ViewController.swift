@@ -90,12 +90,12 @@ extension ViewController: CompositionDelegate {
             let melody = event.notes[.melody]
             let bass = event.notes[.bass]
 
-            var msg = "Melody: \(melody?.value?.letter ?? "rest")"
+            var msg = "Melody: \(melody?.renderedValue?.letter ?? "rest")"
             if let dur = melody?.duration {
                 msg.append(" \(dur)")
             }
             
-            msg.append(", Harmony: \(bass?.value?.letter ?? "rest")")
+            msg.append(", Harmony: \(bass?.renderedValue?.letter ?? "rest")")
             if let dur = bass?.duration {
                 msg.append(" \(dur)")
             }
