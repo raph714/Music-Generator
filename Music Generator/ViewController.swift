@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var fastestNotePopup: NSPopUpButton!
     @IBOutlet weak var tempoTextField: NSTextField!
     @IBOutlet weak var barsTextField: NSTextField!
+    @IBOutlet weak var maxMelodyDistance: NSTextField!
     
     @IBOutlet weak var timeSignatureBeats: NSTextField!
     @IBOutlet weak var timeSignatureDurationPopup: NSPopUpButton!
@@ -74,6 +75,7 @@ class ViewController: NSViewController {
         
         composition.tempo = tempoTextField.doubleValue
         composition.totalMeasures = barsTextField.integerValue
+        composition.maxMelodyDistance = maxMelodyDistance.integerValue
         composition.reset()
         composition.compose()
         musicBox.play(composition: composition)

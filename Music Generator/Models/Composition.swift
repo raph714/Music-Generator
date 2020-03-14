@@ -44,6 +44,7 @@ class Composition {
     var tempo: Float64 = 72
     var accompanymentType: AccompanymentType = .downbeat
     var restAmount: Rests = .none
+    var maxMelodyDistance: Int = 10
     
     var length: Double {
         return timeSignature.valuePerMeausure * Double(totalMeasures)
@@ -75,8 +76,7 @@ class Composition {
             if shouldRest {
                 note = Note.rest(duration: duration)
             } else {
-                note = randomNote(at: randomOctave)
-                note.duration = duration
+                note = randomNote(duration: duration)
             }
             
             noteEvents.append(NoteEvent(notes: [.melody: note], location: location))
@@ -88,7 +88,7 @@ class Composition {
         delegate?.didAdd(events: noteEvents)
     }
 
-    func randomNote(at octave: Int) -> Note {
+    func randomNote(duration: NoteDuration) -> Note {
         var foundNewNote = false
         var newNote: Note!
 
@@ -96,12 +96,16 @@ class Composition {
             let rand = scale.randomToneIndex
             let variation = scale.variation[rand] ?? .natural
 
-            newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: octave, variation: variation)
+            newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: randomOctave, duration: duration, variation: variation)
 
             let lastNote = noteEvents.lastEvent?.notes[.melody]
-            newNote.moveTo(within: 12, of: lastNote)
 
-            let isAtBadInterval = newNote.isAt(interval: 6, to: lastNote) && newNote.isAt(interval: 11, to: lastNote)
+            //RULE: We don't want notes to be more than an octave away from each other.
+            newNote.moveTo(within: maxMelodyDistance, of: lastNote)
+
+            //RULE: We don't want the next note to be 6 or 11 semitones apart from the last.
+            let isAtBadInterval = newNote.isAt(interval: [6, 11], to: lastNote)
+
             foundNewNote = !isAtBadInterval
         }
 
@@ -109,7 +113,7 @@ class Composition {
     }
     
     private var randomOctave: Int {
-        let octave = Int.random(in: 4...6)
+        let octave = Int.random(in: 4...7)
         return octave
     }
     
@@ -139,7 +143,7 @@ class Composition {
     private func generateHarmonySlowest() {
         for event in noteEvents {
             if let note = event.notes[.melody], note.duration == slowest {
-                addHarmony(for: note, at: event.location)
+                addRelatedBass(for: note, at: event.location)
             }
         }
     }
@@ -147,7 +151,7 @@ class Composition {
     private func generateHarmonyAll() {
         for event in noteEvents {
             if let note = event.notes[.melody] {
-                addHarmony(for: note, at: event.location)
+                addRelatedBass(for: note, at: event.location)
             }
         }
     }
@@ -159,7 +163,7 @@ class Composition {
             let event = noteEvents.lastEvent(atOrBefore: location)
             
             if let note = event?.notes[.melody] {
-                addHarmony(for: note, at: location)
+                addRelatedBass(for: note, at: location)
             }
             
             location += timeSignature.duration.value
@@ -170,27 +174,58 @@ class Composition {
         for event in noteEvents {
             if let note = event.notes[.melody],
                 Int.random(in: 0...1) > 0 {
-                addHarmony(for: note, at: event.location)
+                addRandomBassTone(for: note, at: event.location)
             }
         }
     }
+
+    private func addRandomBassTone(for note: Note, at location: Double) {
+        var foundNewNote = false
+        var newNote: Note!
+
+        while !foundNewNote {
+            let rand = scale.randomToneIndex
+            let variation = scale.variation[rand] ?? .natural
+
+            newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: 3, duration: note.duration, variation: variation)
+
+            //RULE: We don't want the next note to be 1, 6 or 11 semitones apart from the last.
+            let isAtBadInterval = newNote.isAt(interval: [0, 1, 2, 6, 11], to: note)
+
+            foundNewNote = !isAtBadInterval
+        }
+
+        addBass(note: newNote, location: location)
+    }
     
-    private func addHarmony(for note: Note, at location: Double) {
-        guard let tone = note.scaleTone else {
+    private func addRelatedBass(for note: Note, at location: Double) {
+        guard note.renderedValue != nil else {
             return
         }
         
-        let root = scale.rootToneIndex(for: Int(tone))
-        let harmonyNote = Note.from(scaleTone: root,
-                                    value: scale.tones[root],
-                                    at: 3,
-                                    duration: note.duration,
-                                    variation: scale.variation[root] ?? .natural)
-        
+        var foundNewNote = false
+        var newNote: Note!
+
+        while !foundNewNote {
+            let rand = scale.randomToneIndex
+            let variation = scale.variation[rand] ?? .natural
+
+            newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: 3, duration: note.duration, variation: variation)
+
+            //RULE: We want a member of a scale to go with our melody note
+            let isAtGoodInterval = newNote.isAt(interval: [4, 5, 7, 9], to: note)
+
+            foundNewNote = isAtGoodInterval
+        }
+
+        addBass(note: newNote, location: location)
+    }
+
+    private func addBass(note: Note, location: Double) {
         if let event = noteEvents.event(at: location) {
-            event.notes[.bass] = harmonyNote
+            event.notes[.bass] = note
         } else {
-            noteEvents.append(NoteEvent(notes: [.bass: harmonyNote], location: location))
+            noteEvents.append(NoteEvent(notes: [.bass: note], location: location))
         }
     }
 }

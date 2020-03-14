@@ -11,7 +11,8 @@ import Foundation
 extension Int {
     var letter: String {
         let notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        return notes[Int(self) % 12]
+        let note = notes[Int(self) % 12] + "\(self/12)"
+        return note
     }
 
     func distance(to noteValue: Int?) -> Int {

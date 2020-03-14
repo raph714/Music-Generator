@@ -73,13 +73,15 @@ class Note {
         }
     }
 
-    func isAt(interval: Int, to note: Note?) -> Bool {
+    func isAt(interval: [Int], to note: Note?) -> Bool {
         guard let selfVal = value,
             let otherVal = note?.value else {
                 return false
         }
 
-        return abs(selfVal - otherVal) == interval
+        let foundInterval = interval.first(where: { abs(selfVal - otherVal) == $0 })
+
+        return foundInterval != nil
     }
 }
 

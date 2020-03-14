@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jGA-0Y-lOj">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jGA-0Y-lOj">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -736,10 +736,10 @@
                                 </connections>
                             </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ji-VO-CHp">
-                                <rect key="frame" x="20" y="49" width="256" height="253"/>
+                                <rect key="frame" x="20" y="20" width="256" height="282"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ILK-W5-FZr">
-                                        <rect key="frame" x="0.0" y="232" width="183" height="21"/>
+                                        <rect key="frame" x="0.0" y="261" width="183" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I2q-ja-qDX">
                                                 <rect key="frame" x="-2" y="5" width="71" height="16"/>
@@ -753,7 +753,7 @@
                                                 <rect key="frame" x="73" y="-3" width="113" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Major" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Psf-7q-t58" id="nOI-PT-8RC">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="F30-rd-sHC">
                                                         <items>
                                                             <menuItem title="Major" state="on" identifier="major" id="Psf-7q-t58"/>
@@ -774,7 +774,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mbJ-9a-MEM">
-                                        <rect key="frame" x="0.0" y="203" width="201" height="21"/>
+                                        <rect key="frame" x="0.0" y="232" width="201" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lH6-T4-K1a">
                                                 <rect key="frame" x="-2" y="5" width="84" height="16"/>
@@ -786,13 +786,13 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tcZ-RW-pbX">
                                                 <rect key="frame" x="86" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2wM-Gd-MnV" id="FbK-39-gTJ">
+                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2wM-Gd-MnV" id="FbK-39-gTJ">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="RQz-iX-msX">
                                                         <items>
-                                                            <menuItem title="Quarter" identifier="quarter" id="2wM-Gd-MnV"/>
-                                                            <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="mhy-cW-2Y0"/>
+                                                            <menuItem title="Quarter" state="on" identifier="quarter" id="2wM-Gd-MnV"/>
+                                                            <menuItem title="Whole" tag="-2" identifier="whole" id="mhy-cW-2Y0"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="Cf8-KF-oB9"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="6nm-GE-mQt"/>
                                                             <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="MD7-lo-Md9"/>
@@ -813,7 +813,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U5n-dB-m5d">
-                                        <rect key="frame" x="0.0" y="174" width="198" height="21"/>
+                                        <rect key="frame" x="0.0" y="203" width="198" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rOt-pT-109">
                                                 <rect key="frame" x="-2" y="5" width="81" height="16"/>
@@ -825,13 +825,13 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="muh-Ls-fIW">
                                                 <rect key="frame" x="83" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Sixteenth" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="rjp-lq-cC5" id="qBp-Ny-TY1">
+                                                <popUpButtonCell key="cell" type="push" title="Sixteenth" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="rjp-lq-cC5" id="qBp-Ny-TY1">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="oKI-Sl-bny">
                                                         <items>
-                                                            <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="rjp-lq-cC5"/>
-                                                            <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bUs-3D-ipk"/>
+                                                            <menuItem title="Sixteenth" state="on" tag="2" identifier="sixteenth" id="rjp-lq-cC5"/>
+                                                            <menuItem title="Whole" tag="-2" identifier="whole" id="bUs-3D-ipk"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="X7f-Sz-4sY"/>
                                                             <menuItem title="Quarter" identifier="quarter" id="4PV-Lp-P9z"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="B31-rp-kuQ"/>
@@ -852,7 +852,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4oo-fy-2ol">
-                                        <rect key="frame" x="0.0" y="145" width="99" height="21"/>
+                                        <rect key="frame" x="0.0" y="174" width="99" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VZw-7L-H70">
                                                 <rect key="frame" x="-2" y="5" width="45" height="16"/>
@@ -881,7 +881,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2qQ-3N-QkL">
-                                        <rect key="frame" x="0.0" y="116" width="86" height="21"/>
+                                        <rect key="frame" x="0.0" y="145" width="86" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="llo-sJ-GiO">
                                                 <rect key="frame" x="-2" y="5" width="32" height="16"/>
@@ -910,7 +910,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Teo-bW-xmY">
-                                        <rect key="frame" x="0.0" y="87" width="172" height="21"/>
+                                        <rect key="frame" x="0.0" y="116" width="172" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bYC-I8-pUX">
                                                 <rect key="frame" x="-2" y="5" width="118" height="16"/>
@@ -939,7 +939,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uef-7p-J5c">
-                                        <rect key="frame" x="0.0" y="58" width="227" height="21"/>
+                                        <rect key="frame" x="0.0" y="87" width="227" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-KM-xRv">
                                                 <rect key="frame" x="-2" y="5" width="110" height="16"/>
@@ -951,13 +951,13 @@
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rRi-SU-dPR">
                                                 <rect key="frame" x="112" y="-3" width="118" height="25"/>
-                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Wj6-Rk-O1z" id="ySW-LJ-5xg">
+                                                <popUpButtonCell key="cell" type="push" title="Quarter" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Wj6-Rk-O1z" id="ySW-LJ-5xg">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="nXh-2H-jvB">
                                                         <items>
-                                                            <menuItem title="Quarter" identifier="quarter" id="Wj6-Rk-O1z"/>
-                                                            <menuItem title="Whole" state="on" tag="-2" identifier="whole" id="bLa-EG-nFf"/>
+                                                            <menuItem title="Quarter" state="on" identifier="quarter" id="Wj6-Rk-O1z"/>
+                                                            <menuItem title="Whole" tag="-2" identifier="whole" id="bLa-EG-nFf"/>
                                                             <menuItem title="Half" tag="-1" identifier="half" id="Hav-Wv-0Ma"/>
                                                             <menuItem title="Eighth" tag="1" identifier="eighth" id="QyK-Qi-eSG"/>
                                                             <menuItem title="Sixteenth" tag="2" identifier="sixteenth" id="oVh-rw-nOR"/>
@@ -978,7 +978,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKN-92-jRv">
-                                        <rect key="frame" x="0.0" y="29" width="170" height="21"/>
+                                        <rect key="frame" x="0.0" y="58" width="170" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y8f-xj-kfV">
                                                 <rect key="frame" x="-2" y="5" width="94" height="16"/>
@@ -992,7 +992,7 @@
                                                 <rect key="frame" x="96" y="-3" width="77" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="RId-kF-Chr" id="rA8-JH-Si4">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="loZ-Vt-936">
                                                         <items>
                                                             <menuItem title="None" state="on" identifier="none" id="RId-kF-Chr"/>
@@ -1013,7 +1013,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qjM-Hc-XJ0">
-                                        <rect key="frame" x="0.0" y="0.0" width="256" height="21"/>
+                                        <rect key="frame" x="0.0" y="29" width="256" height="21"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AzM-GK-Xmy">
                                                 <rect key="frame" x="-2" y="5" width="139" height="16"/>
@@ -1027,7 +1027,7 @@
                                                 <rect key="frame" x="141" y="-3" width="118" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" title="Slowest Note" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Db9-zb-oNv" id="1jC-dN-lVc">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="menu"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <menu key="menu" id="nJP-Id-1aZ">
                                                         <items>
                                                             <menuItem title="Slowest Note" state="on" identifier="slowest" id="Db9-zb-oNv"/>
@@ -1038,6 +1038,35 @@
                                                     </menu>
                                                 </popUpButtonCell>
                                             </popUpButton>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y4V-bB-pdU">
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="21"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oth-nT-wSc">
+                                                <rect key="frame" x="-2" y="5" width="134" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Max Melody Distance" id="dSg-az-LL5">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zry-o4-kQp">
+                                                <rect key="frame" x="138" y="0.0" width="50" height="21"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" title="10" drawsBackground="YES" id="M7h-BH-kz7">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
                                         </subviews>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
@@ -1063,8 +1092,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -1109,6 +1140,7 @@
                         <outlet property="accompanymentPopupButton" destination="gHv-2M-u0P" id="tYM-jI-Mai"/>
                         <outlet property="barsTextField" destination="pGa-g1-A8u" id="QBb-LO-wf5"/>
                         <outlet property="fastestNotePopup" destination="muh-Ls-fIW" id="n8N-ch-EYe"/>
+                        <outlet property="maxMelodyDistance" destination="zry-o4-kQp" id="f2k-tK-fye"/>
                         <outlet property="restTypePopup" destination="KIA-VA-qit" id="dXl-sa-EJa"/>
                         <outlet property="scaleTypePopup" destination="OfW-o7-nSm" id="xaq-Vb-bGo"/>
                         <outlet property="slowestNotePopup" destination="tcZ-RW-pbX" id="3qt-n5-rPf"/>
