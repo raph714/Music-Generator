@@ -29,9 +29,9 @@ enum Rests: String {
         case .none:
             return 0
         case .little:
-            return 0.15
+            return 0.10
         case .lots:
-            return 0.35
+            return 0.3
         }
     }
 }
@@ -44,7 +44,7 @@ class Composition {
     var tempo: Float64 = 72
     var accompanymentType: AccompanymentType = .downbeat
     var restAmount: Rests = .none
-    var maxMelodyDistance: Int = 10
+    var maxMelodyDistance: Int = 8
     
     var length: Double {
         return timeSignature.valuePerMeausure * Double(totalMeasures)
@@ -63,11 +63,11 @@ class Composition {
         var location: Double = 0
     
         while location < length {
-            if isMiddleThird(location: location) {
-                scale.variation = ScaleVariation.majorFlavor.value
-            } else {
-                scale.variation = [:]
-            }
+//            if isMiddleThird(location: location) {
+//                scale.variation = ScaleVariation.majorFlavor.value
+//            } else {
+//                scale.variation = [:]
+//            }
             
             let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
             
@@ -99,6 +99,10 @@ class Composition {
             newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: randomOctave, duration: duration, variation: variation)
 
             let lastNote = noteEvents.lastEvent?.notes[.melody]
+
+            if let note = scale.get(next: newNote, from: lastNote) {
+                newNote = note
+            }
 
             //RULE: We don't want notes to be more than an octave away from each other.
             newNote.moveTo(within: maxMelodyDistance, of: lastNote)
@@ -213,7 +217,7 @@ class Composition {
             newNote = Note.from(scaleTone: rand, value: scale.tones[rand], at: 3, duration: note.duration, variation: variation)
 
             //RULE: We want a member of a scale to go with our melody note
-            let isAtGoodInterval = newNote.isAt(interval: [4, 5, 7, 9], to: note)
+            let isAtGoodInterval = newNote.isAt(interval: [4, 5, 7], to: note)
 
             foundNewNote = isAtGoodInterval
         }

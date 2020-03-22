@@ -31,17 +31,54 @@ enum ScaleVariation {
     var value: [Int: ScaleToneVariation] {
         switch self {
         case .majorFlavor:
-            return [6: .flat, 7: .flat]
+            return [5: .flat, 6: .flat]
         }
+    }
+}
+
+class ScaleWeight {
+    var weights = [Int: Int]()
+
+    init(weights: [Int: Int]) {
+        self.weights = weights
+    }
+
+    static var major: ScaleWeight {
+        return ScaleWeight(weights: [0: 12, 1: 10, 2: 12, 3: 10, 4: 12, 5: 10, 6: 8])
+    }
+
+    var random: Int {
+        //sum the values
+        let sum = weights.values.reduce(0) { result, next -> Int in
+            return result + next
+        }
+
+        let random = Int.random(in: 1...sum)
+
+        var currentCount = 0
+        for (key, value) in weights {
+            currentCount += value
+
+            if currentCount >= random {
+                return key
+            }
+        }
+
+        fatalError()
     }
 }
 
 struct Scale {
     let tones: [Int]
     var variation = [Int: ScaleToneVariation]()
+
+    //we want to give a higher probability for some notes at some times.
+    //the index will be the scale tone index, and the value will be the weight.
+    //add all the weights up, do a random and figure out where it should sit.
+    var scaleWeight: ScaleWeight = ScaleWeight.major
     
     var randomToneIndex: Int {
-        return Int.random(in: 0...tones.count-1)
+        return scaleWeight.random
     }
     
     init(noteValues: [Int]) {
@@ -51,6 +88,20 @@ struct Scale {
         }
         
         self.tones = notes
+    }
+
+    func get(next: Note, from last: Note?) -> Note? {
+        guard let last = last else {
+            return nil
+        }
+
+        if last.scaleTone == 6 {
+            return Note(value: tones[1], scaleTone: 0, duration: next.duration, variation: variation[1] ?? .natural, octave: next.octave)
+        } else if last.scaleTone == 3 {
+            return Note(value: tones[2], scaleTone: 2, duration: next.duration, variation: variation[2] ?? .natural, octave: next.octave)
+        }
+
+        return nil
     }
     
     func chord(for tone: Int) -> [Int] {
