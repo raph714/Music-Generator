@@ -8,7 +8,6 @@
 
 import Foundation
 
-/// Represents a
 struct TimeSignature {
     let beats: Int
     let duration: NoteDuration

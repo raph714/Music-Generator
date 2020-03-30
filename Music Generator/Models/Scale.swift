@@ -36,7 +36,7 @@ enum ScaleVariation {
     }
 }
 
-class ScaleWeight {
+class ScaleWeight: Weight {
     var weights = [Int: Int]()
 
     init(weights: [Int: Int]) {
@@ -47,25 +47,9 @@ class ScaleWeight {
         return ScaleWeight(weights: [0: 12, 1: 10, 2: 12, 3: 10, 4: 12, 5: 10, 6: 8])
     }
 
-    var random: Int {
-        //sum the values
-        let sum = weights.values.reduce(0) { result, next -> Int in
-            return result + next
-        }
-
-        let random = Int.random(in: 1...sum)
-
-        var currentCount = 0
-        for (key, value) in weights {
-            currentCount += value
-
-            if currentCount >= random {
-                return key
-            }
-        }
-
-        fatalError()
-    }
+	var random: Int {
+		return Self.random(for: weights)
+	}
 }
 
 struct Scale {
@@ -78,7 +62,7 @@ struct Scale {
     var scaleWeight: ScaleWeight = ScaleWeight.major
     
     var randomToneIndex: Int {
-        return scaleWeight.random
+		return scaleWeight.random
     }
     
     init(noteValues: [Int]) {

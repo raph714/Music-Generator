@@ -68,11 +68,6 @@ class ViewController: NSViewController {
             composition.accompanymentType = accVal
         }
         
-        if let rest = restTypePopup.selectedItem?.identifier?.rawValue,
-            let restVal = Rests(rawValue: rest){
-            composition.restAmount = restVal
-        }
-        
         composition.tempo = tempoTextField.doubleValue
         composition.totalMeasures = barsTextField.integerValue
         composition.maxMelodyDistance = maxMelodyDistance.integerValue
@@ -102,7 +97,7 @@ extension ViewController: CompositionDelegate {
                 msg.append(" \(dur)")
             }
 
-            textField.stringValue.append(contentsOf: "\(msg)\n")
+			textField.stringValue.append(contentsOf: "\(msg), Location: \(event.location)\n")
         }
     }
 }

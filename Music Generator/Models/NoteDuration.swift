@@ -29,3 +29,13 @@ enum NoteDuration: Int, CaseIterable {
         return rand
     }
 }
+
+class DurationWeight {
+	var weights = [Double: NoteDuration]()
+
+	init(weights: [Double: NoteDuration]) {
+		self.weights = weights
+	}
+
+//	static var weightfor
+}

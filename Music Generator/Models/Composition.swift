@@ -19,23 +19,6 @@ enum AccompanymentType: String {
     case random
 }
 
-enum Rests: String {
-    case little
-    case lots
-    case none
-    
-    var percentage: Float {
-        switch self {
-        case .none:
-            return 0
-        case .little:
-            return 0.10
-        case .lots:
-            return 0.3
-        }
-    }
-}
-
 class Composition {
     var noteEvents = [NoteEvent]()
     var scale = ScaleType.major.value
@@ -43,7 +26,6 @@ class Composition {
     var totalMeasures: Int = 2
     var tempo: Float64 = 72
     var accompanymentType: AccompanymentType = .downbeat
-    var restAmount: Rests = .none
     var maxMelodyDistance: Int = 8
     
     var length: Double {
@@ -68,25 +50,36 @@ class Composition {
 //            } else {
 //                scale.variation = [:]
 //            }
+
+			let nextLocation = NoteLocation.init(location).randomNext
+			let duration = randomDuration(for: nextLocation)
+
+			if nextLocation.location + duration.value > length {
+				continue
+			}
+
+            let note = randomNote(duration: duration)
             
-            let duration = NoteDuration.random(slowest: slowest, fastest: fastest)
-            
-            let note: Note
-            
-            if shouldRest {
-                note = Note.rest(duration: duration)
-            } else {
-                note = randomNote(duration: duration)
-            }
-            
-            noteEvents.append(NoteEvent(notes: [.melody: note], location: location))
-            location += duration.value
+			noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
+            location = duration.value + nextLocation.location
         }
         
         generateHarmony()
         
         delegate?.didAdd(events: noteEvents)
     }
+
+//	func randomDuration() -> NoteDuration {
+//		guard let 
+//	}
+
+	func randomDuration(for location: NoteLocation) -> NoteDuration {
+		if let duration = location.nextDuration {
+			return duration
+		}
+
+		return NoteDuration.random(slowest: slowest, fastest: fastest)
+	}
 
     func randomNote(duration: NoteDuration) -> Note {
         var foundNewNote = false
@@ -119,10 +112,6 @@ class Composition {
     private var randomOctave: Int {
         let octave = Int.random(in: 4...7)
         return octave
-    }
-    
-    private var shouldRest: Bool {
-        return Float.random(in: 0...1) < restAmount.percentage
     }
     
     private func isMiddleThird(location: Double) -> Bool {
