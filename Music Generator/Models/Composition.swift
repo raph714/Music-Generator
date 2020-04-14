@@ -45,11 +45,11 @@ class Composition {
         var location: Double = 0
     
         while location < length {
-//            if isMiddleThird(location: location) {
-//                scale.variation = ScaleVariation.majorFlavor.value
-//            } else {
-//                scale.variation = [:]
-//            }
+            if isMiddleThird(location: location) {
+                scale.variation = ScaleVariation.majorFlavor.value
+            } else {
+                scale.variation = [:]
+            }
 
 			let nextLocation = NoteLocation.init(location).randomNext
 			let duration = randomDuration(for: nextLocation)
@@ -68,10 +68,6 @@ class Composition {
         
         delegate?.didAdd(events: noteEvents)
     }
-
-//	func randomDuration() -> NoteDuration {
-//		guard let 
-//	}
 
 	func randomDuration(for location: NoteLocation) -> NoteDuration {
 		if let duration = location.nextDuration {
@@ -110,7 +106,7 @@ class Composition {
     }
     
     private var randomOctave: Int {
-        let octave = Int.random(in: 4...7)
+        let octave = Int.random(in: 4...6)
         return octave
     }
     

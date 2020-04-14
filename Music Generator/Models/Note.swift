@@ -63,6 +63,7 @@ class Note {
         }
 
         let distance = selfVal - otherVal
+		print("\(selfVal) \(otherVal), \(distance)")
 
         if abs(distance) > within {
             if selfVal < otherVal {
@@ -71,6 +72,8 @@ class Note {
                 octave = octave - (abs(distance) / 12)
             }
         }
+
+		print("\(renderedValue)")
     }
 
     func isAt(interval: [Int], to note: Note?) -> Bool {

@@ -68,22 +68,18 @@ struct NoteLocation: Hashable {
 
 	var randomNext: NoteLocation {
 		let fourFourWeight = NoteLocationWeight.fourFour(current: self.locationInMeasure)
-		print(fourFourWeight)
 
 		//now get a random location. for example 2.25
 		let randomWeightedLocation = fourFourWeight.random
-		print(randomWeightedLocation)
 
 		//now make sure it's going to happen AFTER where we are currently.
 		//if we got one before the current location we just add 4 - random weight. so if we were at 3 and got 2, we'd want to add 2, to get to 5 (2 beat in next measure)
 		if randomWeightedLocation.location < locationInMeasure.location {
 			let newLocation = location + (randomWeightedLocation.location - locationInMeasure.location) + 4
-			print(newLocation)
 			return NoteLocation(newLocation)
 		} else {
 			//we're either at or after the thing, so just add the difference.
 			let newLocation = location + (randomWeightedLocation.location - locationInMeasure.location)
-			print(newLocation)
 			return NoteLocation(newLocation)
 		}
 	}
