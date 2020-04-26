@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Chord {
+enum Chord: String {
 	case IMaj7
 	case II7
 	case III7
@@ -38,7 +38,44 @@ enum Chord {
 		}
 	}
 
-	var lessStableAscending: [Chord] {
+	var valueNo5th: [Int] {
+		switch self {
+		case .IMaj7:
+			return [0, 4, 11]
+		case .II7:
+			return [0, 2, 9]
+		case .III7:
+			return [2, 4, 11]
+		case .IVMaj7:
+			return [0, 4, 9]
+		case .V7:
+			return [2, 5, 11]
+		case .VI7:
+			return [0, 4, 9]
+		case .VII7b5:
+			return [2, 5, 11]
+		}
+	}
+
+	static var all: [Chord] {
+		return [.IMaj7, .II7, .III7, .IVMaj7, .V7, .VI7, .VII7b5]
+	}
+
+	func next() -> Chord {
+		//figure out which way we're going, up, down, progress or resolve
+		let progress = self.progressionDescending + self.progressionAscending
+		let resolve = self.resolutionDescending + self.resolutionAscending
+
+		if !progress.isEmpty {
+			let randIndex = Int.random(in: 0...progress.count - 1)
+			return progress[randIndex]
+		} else {
+			let randIndex = Int.random(in: 0...resolve.count - 1)
+			return resolve[randIndex]
+		}
+	}
+
+	var progressionAscending: [Chord] {
 		switch self {
 		case .IMaj7:
 			return [.II7, .V7]
@@ -57,7 +94,26 @@ enum Chord {
 		}
 	}
 
-	var lessStableDescending: [Chord] {
+	var resolutionAscending: [Chord] {
+		switch self {
+		case .IMaj7:
+			return []
+		case .II7:
+			return [.III7, .VI7]
+		case .III7:
+			return []
+		case .IVMaj7:
+			return [.IMaj7]
+		case .V7:
+			return [.VI7, .II7]
+		case .VI7:
+			return []
+		case .VII7b5:
+			return []
+		}
+	}
+
+	var progressionDescending: [Chord] {
 		switch self {
 		case .IMaj7:
 			return [.IVMaj7]
@@ -76,26 +132,7 @@ enum Chord {
 		}
 	}
 
-	var moreStableAscending: [Chord] {
-		switch self {
-		case .IMaj7:
-			return []
-		case .II7:
-			return [.III7, .VI7]
-		case .III7:
-			return []
-		case .IVMaj7:
-			return [.IMaj7]
-		case .V7:
-			return []
-		case .VI7:
-			return []
-		case .VII7b5:
-			return []
-		}
-	}
-
-	var moreStableDescending: [Chord] {
+	var resolutionDescending: [Chord] {
 		switch self {
 		case .IMaj7:
 			return []
@@ -127,7 +164,7 @@ enum Chord {
 		case .V7:
 			return []
 		case .VI7:
-			return []
+			return [.III7]
 		case .VII7b5:
 			return []
 		}

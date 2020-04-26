@@ -36,20 +36,50 @@ class Composition {
     
     var slowest: NoteDuration = .eighth
     var fastest: NoteDuration = .sixteenth
+
+	var currentChord = Chord.IMaj7
     
     func reset() {
         noteEvents.removeAll()
     }
 
+	func addChords() {
+		var location: Double = 0
+
+		currentChord = .IMaj7
+
+		while location < length {
+			let nextLocation = NoteLocation.init(location).randomNext
+			let duration = randomDuration(for: nextLocation)
+//
+//			print(currentChord.rawValue)
+			let note = Note(value: currentChord.valueNo5th.first, scaleTone: nil, duration: duration, octave: 2)
+			noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
+
+			for tone in currentChord.valueNo5th {
+				let note = Note(value: tone, scaleTone: nil, duration: duration, octave: 4)
+				noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
+			}
+
+			print(currentChord)
+
+			currentChord = currentChord.next()
+
+			location = duration.value + nextLocation.location
+		}
+
+		delegate?.didAdd(events: noteEvents)
+	}
+
     func compose() {
         var location: Double = 0
     
         while location < length {
-            if isMiddleThird(location: location) {
-                scale.variation = ScaleVariation.majorFlavor.value
-            } else {
-                scale.variation = [:]
-            }
+//            if isMiddleThird(location: location) {
+//                scale.variation = ScaleVariation.majorFlavor.value
+//            } else {
+//                scale.variation = [:]
+//            }
 
 			let nextLocation = NoteLocation.init(location).randomNext
 			let duration = randomDuration(for: nextLocation)
@@ -59,7 +89,6 @@ class Composition {
 			}
 
             let note = randomNote(duration: duration)
-            
 			noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
             location = duration.value + nextLocation.location
         }
@@ -103,7 +132,7 @@ class Composition {
         }
 
         return newNote
-    }
+	}
     
     private var randomOctave: Int {
         let octave = Int.random(in: 4...6)

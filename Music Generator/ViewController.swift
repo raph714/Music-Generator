@@ -73,6 +73,7 @@ class ViewController: NSViewController {
         composition.maxMelodyDistance = maxMelodyDistance.integerValue
         composition.reset()
         composition.compose()
+//		composition.addChords()
         musicBox.play(composition: composition)
     }
     
