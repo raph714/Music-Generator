@@ -72,8 +72,8 @@ class ViewController: NSViewController {
         composition.totalMeasures = barsTextField.integerValue
         composition.maxMelodyDistance = maxMelodyDistance.integerValue
         composition.reset()
-        composition.compose()
-//		composition.addChords()
+//        composition.compose()
+		composition.addChords()
         musicBox.play(composition: composition)
     }
     

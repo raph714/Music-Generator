@@ -37,36 +37,35 @@ class Composition {
     var slowest: NoteDuration = .eighth
     var fastest: NoteDuration = .sixteenth
 
-	var currentChord = Chord.IMaj7
+	var chordProgression = ChordProgression(chords: [.I], configuration: .standard)
     
     func reset() {
         noteEvents.removeAll()
-    }
+	}
 
 	func addChords() {
 		var location: Double = 0
 
-		currentChord = .IMaj7
+		chordProgression = ChordProgression(chords: [.I], configuration: .standard)
 
 		while location < length {
 			let nextLocation = NoteLocation.init(location).randomNext
 			let duration = randomDuration(for: nextLocation)
-//
-//			print(currentChord.rawValue)
-			let note = Note(value: currentChord.valueNo5th.first, scaleTone: nil, duration: duration, octave: 2)
-			noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
 
-			for tone in currentChord.valueNo5th {
+			let note = Note(value: chordProgression.chords.last!.root, scaleTone: nil, duration: duration, octave: 2)
+			noteEvents.append(NoteEvent(notes: [.bass: note], location: nextLocation.location))
+
+			for tone in chordProgression.chords.last!.valueBySemiTone {
 				let note = Note(value: tone, scaleTone: nil, duration: duration, octave: 4)
 				noteEvents.append(NoteEvent(notes: [.melody: note], location: nextLocation.location))
 			}
 
-			print(currentChord)
-
-			currentChord = currentChord.next()
+			chordProgression.addCalculatedChord()
 
 			location = duration.value + nextLocation.location
 		}
+
+		print(chordProgression.chords)
 
 		delegate?.didAdd(events: noteEvents)
 	}
