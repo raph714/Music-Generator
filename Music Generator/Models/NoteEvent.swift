@@ -11,6 +11,7 @@ import Foundation
 class NoteEvent {
     enum NoteType {
         case melody
+		case chord
         case bass
     }
     
@@ -21,6 +22,17 @@ class NoteEvent {
         self.notes = notes
         self.location = location
     }
+
+	var description: String {
+		var desc = ""
+		for (type, note) in notes {
+			desc += "\(type)"
+			desc += " \(String(describing: note.renderedValue?.letter ?? "rest")) "
+			desc += "at \(location)"
+		}
+
+		return desc
+	}
 }
 
 extension NoteEvent: Equatable {
@@ -52,8 +64,10 @@ extension Array where Element == NoteEvent {
         return sorted[index - 1]
     }
     
-    func event(at location: Double) -> NoteEvent? {
-        return first(where: { $0.location == location })
+	func notes(at location: Double, of type: NoteEvent.NoteType) -> [Note] {
+		let notesAtLocation = filter({ $0.location == location })
+
+		return notesAtLocation.compactMap({ $0.notes[type] })
     }
     
     func lastEvent(atOrBefore location: Double) -> NoteEvent? {

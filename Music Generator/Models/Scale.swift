@@ -8,22 +8,92 @@
 
 import Foundation
 
-enum ScaleType: String {
-    case twelve
+ enum ScaleType: String {
     case major
     case minor
+	case dorian
 
     var value: Scale {
         switch self {
-        case .twelve:
-            return Scale(noteValues: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
         case .major:
             return Scale(noteValues: [0, 2, 4, 5, 7, 9, 11])
         case .minor:
             return Scale(noteValues: [0, 2, 3, 5, 7, 8, 10])
+		case .dorian:
+			return Scale(noteValues: [0, 2, 3, 5, 7, 9, 10])
         }
     }
+	func midiValues(for keyTone: Int) -> [ScaleTone: Int] {
+		switch self {
+		case .major:
+			return [.I: keyTone,
+					.II: keyTone + 2,
+					.III: keyTone + 4,
+					.IV: keyTone + 5,
+					.V: keyTone + 7,
+					.VI: keyTone + 9,
+					.VII: keyTone + 11]
+		case .minor:
+			return [.I: keyTone,
+					.II: keyTone + 2,
+					.III: keyTone + 3,
+					.IV: keyTone + 5,
+					.V: keyTone + 7,
+					.VI: keyTone + 8,
+					.VII: keyTone + 10]
+		case .dorian:
+			return [.I: keyTone,
+					.II: keyTone + 2,
+					.III: keyTone + 3,
+					.IV: keyTone + 5,
+					.V: keyTone + 7,
+					.VI: keyTone + 9,
+					.VII: keyTone + 10]
+		}
+	}
+
+	var chords: [ChordType] {
+		switch self {
+		case .major:
+			return [.major, .minor, .minor, .major, .major, .minor, .diminished]
+		case .minor:
+			return [.minor, .diminished, .major, .minor, .minor, .major, .major]
+		case .dorian:
+			return [.minor, .minor, .major, .major, .minor, .diminished, .major]
+		}
+	}
 }
+
+enum ScaleTone: String {
+	case I
+	case II
+	case III
+	case IV
+	case V
+	case VI
+	case VII
+
+	var intValue: Int {
+		switch self {
+		case .I:
+			return 1
+		case .II:
+			return 2
+		case .III:
+			return 3
+		case .IV:
+			return 4
+		case .V:
+			return 5
+		case .VI:
+			return 6
+		case .VII:
+			return 7
+		}
+	}
+}
+
+
 
 enum ScaleVariation {
     case majorFlavor

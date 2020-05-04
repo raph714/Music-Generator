@@ -72,8 +72,8 @@ class ViewController: NSViewController {
         composition.totalMeasures = barsTextField.integerValue
         composition.maxMelodyDistance = maxMelodyDistance.integerValue
         composition.reset()
-//        composition.compose()
-		composition.addChords()
+        composition.composeWithChords()
+//		composition.addChords()
         musicBox.play(composition: composition)
     }
     
@@ -85,20 +85,20 @@ class ViewController: NSViewController {
 extension ViewController: CompositionDelegate {
     func didAdd(events: [NoteEvent]) {
         for event in events.sorted {
-            let melody = event.notes[.melody]
-            let bass = event.notes[.bass]
+//            let melody = event.notes[.melody]
+//            let bass = event.notes[.bass]
+//
+//            var msg = "Melody: \(melody?.renderedValue?.letter ?? "rest")"
+//            if let dur = melody?.duration {
+//                msg.append(" \(dur)")
+//            }
+//
+//            msg.append(", Harmony: \(bass?.renderedValue?.letter ?? "rest")")
+//            if let dur = bass?.duration {
+//                msg.append(" \(dur)")
+//            }
 
-            var msg = "Melody: \(melody?.renderedValue?.letter ?? "rest")"
-            if let dur = melody?.duration {
-                msg.append(" \(dur)")
-            }
-            
-            msg.append(", Harmony: \(bass?.renderedValue?.letter ?? "rest")")
-            if let dur = bass?.duration {
-                msg.append(" \(dur)")
-            }
-
-			textField.stringValue.append(contentsOf: "\(msg), Location: \(event.location)\n")
+			textField.stringValue.append(contentsOf: event.description + "\n")
         }
     }
 }

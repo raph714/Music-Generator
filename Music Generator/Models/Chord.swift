@@ -8,6 +8,42 @@
 
 import Foundation
 
+enum ChordType {
+	case major
+	case minor
+	case diminished
+	case major7
+	case minor7
+	case dominant7
+	case suspended2
+	case suspended4
+	case augmented
+
+	func from(tone: Int) -> [Int] {
+		switch self {
+		case .major:
+			return [tone, tone + 4, tone + 7]
+		case .minor:
+			return [tone, tone + 3, tone + 7]
+		case .diminished:
+			return [tone, tone + 3, tone + 6]
+		case .major7:
+			return [tone, tone + 4, tone + 7, tone + 11]
+		case .minor7:
+			return [tone, tone + 3, tone + 7, tone + 10]
+		case .dominant7:
+			return [tone, tone + 4, tone + 7, tone + 10]
+		case .suspended2:
+			return [tone, tone + 2, tone + 7]
+		case .suspended4:
+			return [tone, tone + 5, tone + 7]
+		case .augmented:
+			return [tone, tone + 4, tone + 8]
+		}
+	}
+}
+
+
 enum Chord: String {
 	case I
 	case IMaj7
