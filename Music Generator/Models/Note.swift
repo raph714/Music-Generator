@@ -40,8 +40,6 @@ class Note {
         return newVal
     }
 
-
-
     init(value: Int, scaleTone: Int, duration: NoteDuration, variation: ScaleToneVariation = .natural, octave: Int = 4) {
         self.value = value
         self.duration = duration
@@ -54,24 +52,28 @@ class Note {
 		self.duration = duration
 	}
 
-    func moveTo(within: Int, of note: Note?) {
+	func moveTo(within: Int, of note: Note?, recursion: Int = 0) {
+		print("Trying to move note \(renderedValue) to within \(note?.renderedValue)")
         guard let selfVal = renderedValue,
             let otherVal = note?.renderedValue else {
                 return
         }
 
-        let distance = selfVal - otherVal
-		print("\(selfVal) \(otherVal), \(distance)")
+        let distance = abs(selfVal - otherVal)
 
-        if abs(distance) > within {
-            if selfVal < otherVal {
-                octave = octave + (abs(distance) / 12)
-            } else {
-                octave = octave - (abs(distance) / 12)
-            }
-        }
+		if distance <= within || recursion > 6 {
+			return
+		}
+		
+		if selfVal < otherVal {
+			octave += 1
+			moveTo(within: within, of: note, recursion: recursion + 1)
+		} else {
+			octave -= 1
+			moveTo(within: within, of: note, recursion: recursion + 1)
+		}
 
-		print("\(String(describing: renderedValue))")
+		print("Moved to: \(String(describing: renderedValue))")
     }
 
     func isAt(interval: [Int], to note: Note?) -> Bool {

@@ -41,11 +41,11 @@ class DurationWeight: Weight {
 	}
 
 	static var chordWeight: DurationWeight {
-		return DurationWeight(weights: [.whole: 14, .half: 20, .quarter: 15, .eighth: 5, .sixteenth: 5, .thirtysecond: 3, .sixtyfourth: 2])
+		return DurationWeight(weights: [.whole: 25, .half: 30, .quarter: 6, .eighth: 2, .sixteenth: 2, .thirtysecond: 1, .sixtyfourth: 0])
 	}
 
 	static var melodyWeight: DurationWeight {
-		return DurationWeight(weights: [.whole: 3, .half: 5, .quarter: 12, .eighth: 12, .sixteenth: 8, .thirtysecond: 3, .sixtyfourth: 2])
+		return DurationWeight(weights: [.whole: 3, .half: 5, .quarter: 14, .eighth: 14, .sixteenth: 9, .thirtysecond: 3, .sixtyfourth: 2])
 	}
 
 	var random: NoteDuration {

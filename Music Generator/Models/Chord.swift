@@ -279,6 +279,6 @@ enum ChordConfiguration {
 	case standard
 
 	var allowedChords: [Chord] {
-		return [.I, .II7, .III, .IV, .V7, .VI, .VII7b5]
+		return [.I, .II, .III, .IV, .V, .VI]
 	}
 }

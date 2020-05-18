@@ -50,6 +50,11 @@ extension Array where Element == NoteEvent {
     var lastEvent: NoteEvent? {
         return sorted.last
     }
+
+	func lastNote(of type: NoteEvent.NoteType) -> Note? {
+		let event = sorted.reversed().first {  $0.notes[type] != nil }
+		return event?.notes[type]
+	}
     
     func event(before event: NoteEvent) -> NoteEvent? {
         let sorted = self.sorted

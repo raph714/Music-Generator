@@ -66,7 +66,7 @@ class Composition {
 			noteEvents.append(NoteEvent(notes: [.bass: note], location: nextLocation.location))
 
 			for tone in chordProgression.chords.last!.valueBySemiTone {
-				let note = Note(value: tone, scaleTone: scale.tones.firstIndex(of: tone)!, duration: duration, octave: 4)
+				let note = Note(value: tone, scaleTone: scale.tones.firstIndex(of: tone)!, duration: duration, octave: 5)
 				noteEvents.append(NoteEvent(notes: [.chord: note], location: nextLocation.location))
 			}
 
@@ -146,7 +146,7 @@ class Composition {
 
 			newNote = Note(value: scale.tones[rand], scaleTone: rand, duration: duration, variation: variation, octave: randomOctave)
 
-            let lastNote = noteEvents.lastEvent?.notes[.melody]
+			let lastNote = noteEvents.lastNote(of: .melody)
 
             if let note = scale.get(next: newNote, from: lastNote) {
                 newNote = note
@@ -165,7 +165,7 @@ class Composition {
 	}
     
     private var randomOctave: Int {
-        let octave = Int.random(in: 4...6)
+        let octave = Int.random(in: 5...7)
         return octave
     }
     
